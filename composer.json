@@ -1,0 +1,21 @@
+{
+    "name": "rubyq/gomail",
+    "description": "GoMail - this is a web application where you can imply send your emails and chatting with another users",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Anton Hideger",
+            "email": "antonhideger1337@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Gomail\\": "core/",
+            "Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "phpunit/phpunit": "^8.4"
+    }
+}

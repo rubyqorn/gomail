@@ -1,0 +1,5 @@
+.vscode
+error.log
+vendor
+composer.lock
+.htaccess
