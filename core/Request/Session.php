@@ -2,8 +2,6 @@
 
 namespace Gomail\Request;
 
-use Gomail\Request\Exceptions\SessionExceptions;
-
 class Session extends RequestManipulation
 {
     /**
@@ -11,9 +9,22 @@ class Session extends RequestManipulation
      */ 
     private $name;
 
-    public function __construct($name)
+    /**
+     * @var $value mixed 
+     */ 
+    private $value;
+
+    /**
+     * @var $session array 
+     */ 
+    private $session;
+
+    public function __construct($name, $value)
     {
+        parent::__construct();
         $this->name = $name;
+        $this->value = $value;
+        $this->session = $_SESSION[$this->name] = $this->value;
     }
 
     /**
@@ -23,12 +34,12 @@ class Session extends RequestManipulation
      */ 
     public function set()
     {
-        if (isset($this->name)) {
-            $_SESSION[$this->name];
+        if (isset($this->session)) {
+            $_SESSION[$this->name] = $this->value;
             return $this;
         }
 
-        return SessionExceptions::doesntExists();
+        return $this->invalidArgumentsError->showMessage();
     }
 
     /**
@@ -38,12 +49,12 @@ class Session extends RequestManipulation
      */ 
     public function get()
     {
-        if (isset($_SESSION[$this->name])) {
-            $_SESSION[$this->name];
+        if (isset($this->session)) {
+            print $_SESSION[$this->name];
             return $this;
         }
 
-        return SessionExceptions::doesntExists();
+        return $this->invalidArgumentsError->showMessage();
     }
 
     /**
@@ -56,7 +67,5 @@ class Session extends RequestManipulation
         if (isset($_SESSION[$this->name])) {
             unset($_SESSION[$this->name]);
         }
-
-        return SessionExceptions::doesntExists();
     }
 }

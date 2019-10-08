@@ -8,6 +8,6 @@ class App
 {
     public function start()
     {
-        return true;
+        $request = new Request();
     }
 }

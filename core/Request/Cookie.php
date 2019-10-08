@@ -2,30 +2,61 @@
 
 namespace Gomail\Request;
 
-use Gomail\Request\Exceptions\CookieExceptions;
-
 class Cookie extends RequestManipulation
 {
     /**
-     * @var $name string 
+     * @var string 
      */ 
     private $name;
 
     /**
-     * @var $value string 
+     * @var string 
      */
     private $value;
 
     /**
-     * $time date format 
+     * @var date format 
      */ 
     private $time;
 
-    public function __construct($name, $value, $time)
+    /**
+     * @var string
+     */ 
+    private $path;
+
+    /**
+     * @var string
+     */ 
+    private $domain;
+
+    /**
+     * @var bool
+     */ 
+    private $secure;
+
+    /**
+     * @var bool
+     */ 
+    private $httpOnly;
+
+    /**
+     * @var array
+     */ 
+    private $cookie;
+
+    public function __construct(
+        $name, $value, $time, $path = null, 
+        $domain = null, $secure = FALSE, $httpOnly = FALSE
+        )
     {
+        parent::__construct();
         $this->name = $name;
         $this->value = $value;
         $this->time = $time;
+        $this->path = $path;
+        $this->domain = $domain;
+        $this->secure = $secure;
+        $this->httpOnly = $httpOnly;
     }
 
     /**
@@ -35,10 +66,11 @@ class Cookie extends RequestManipulation
      */ 
     public function set()
     {
-        if (setcookie($this->name, $this->value, $this->time)) {
+        if (setcookie($this->name, $this->value, $this->time, $this->path, $this->domain, $this->secure, $this->httpOnly)) {
+            $this->cookie = $_COOKIE[$this->name] = $this->value;
             return $this;
         } 
-        return CookieExceptions::invalidArguments();
+        return $this->invalidArgumentsException->showMessage();
     }
 
     /**
@@ -49,11 +81,11 @@ class Cookie extends RequestManipulation
     public function get()
     {
         if (isset($_COOKIE[$this->name])) {
-            $_COOKIE[$this->name];
+            print $_COOKIE[$this->name];
             return $this;
         } 
 
-        return CookieExceptions::doesntExists();
+        return $this->doesntExistsError->showMessage($this->name);
     }
 
     /**
@@ -65,8 +97,7 @@ class Cookie extends RequestManipulation
     {
         if (isset($_COOKIE[$this->name])) {
             unset($_COOKIE[$this->name]);
+            setcookie($this->name, '', time() - 3600);
         }
-
-        return CookieExceptions::doesntExists();
     }
 }
