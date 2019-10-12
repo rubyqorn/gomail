@@ -2,6 +2,11 @@
 
 namespace Gomail\Request;
 
+use Gomail\Request\Exceptions\{
+    InvalidArgumentsException,
+    DoesntExistsException
+};
+
 class Cookie extends RequestManipulation
 {
     /**
@@ -49,7 +54,6 @@ class Cookie extends RequestManipulation
         $domain = null, $secure = FALSE, $httpOnly = FALSE
         )
     {
-        parent::__construct();
         $this->name = $name;
         $this->value = $value;
         $this->time = $time;
@@ -70,7 +74,8 @@ class Cookie extends RequestManipulation
             $this->cookie = $_COOKIE[$this->name] = $this->value;
             return $this;
         } 
-        return $this->invalidArgumentsException->showMessage();
+        
+        throw new InvalidArgumentsException('Invalid arguments was passed in Cookie constructor method');
     }
 
     /**
@@ -85,7 +90,7 @@ class Cookie extends RequestManipulation
             return $this;
         } 
 
-        return $this->doesntExistsError->showMessage($this->name);
+        throw new DoesntExistsException('Cookie like ' . $this->name . ' doesn\'t exists');
     }
 
     /**

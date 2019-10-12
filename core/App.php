@@ -8,6 +8,7 @@ class App
 {
     public function start()
     {
-        $request = new Request();
+        throw new \Gomail\Request\Exceptions\InvalidArgumentsException('Error adsadsa');
+
     }
 }

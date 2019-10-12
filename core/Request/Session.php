@@ -2,6 +2,8 @@
 
 namespace Gomail\Request;
 
+use Gomail\Request\Exceptions\InvalidArgumentsException;
+
 class Session extends RequestManipulation
 {
     /**
@@ -21,7 +23,6 @@ class Session extends RequestManipulation
 
     public function __construct($name, $value)
     {
-        parent::__construct();
         $this->name = $name;
         $this->value = $value;
         $this->session = $_SESSION[$this->name] = $this->value;
@@ -39,7 +40,7 @@ class Session extends RequestManipulation
             return $this;
         }
 
-        return $this->invalidArgumentsError->showMessage();
+        throw new InvalidArgumentsException('You have passed invalid arguments');
     }
 
     /**
@@ -54,7 +55,7 @@ class Session extends RequestManipulation
             return $this;
         }
 
-        return $this->invalidArgumentsError->showMessage();
+        throw new InvalidArgumentsException('You have passed invalid arguments');
     }
 
     /**

@@ -7,14 +7,12 @@ use Exception;
 class DoesntExistsException extends Exception 
 {
     /**
-     * Show error message if passed params doesnt exists
+     * Throw new exception with own message 
      * 
-     * @param $params mixed
-     * 
-     * @return string 
+     * @return \Exception
      */ 
-    public function showMessage($params = [])
+    public function __construct($message, $code = 0)
     {
-        echo 'Passed params: ' . $params . ' doesnt exists ';
+        parent::__construct($message, $code);
     }
 }

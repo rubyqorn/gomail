@@ -11,26 +11,9 @@ use Gomail\Request\Exceptions\{
 class Request
 {
     /**
-     * @var \Gomail\Request\Exceptions\AlreadyExistsException 
+     * @var string 
      */ 
-    private $alreadyExistsError;
-
-    /**
-     * @var \Gomail\Request\Exceptions\DoesntExistsException 
-     */ 
-    private $doesntExistsError;
-
-    /**
-     * @var \Gomail\Request\Exceptions\InvalidArgumentsException 
-     */ 
-    private $invalidArgumentError;
-
-    public function __construct()
-    {
-        $this->alreadyExistsError = new AlreadyExistsException();
-        $this->doesntExistsError = new DoesntExistsException();
-        $this->invalidArgumentError = new InvalidArgumentsException();
-    }
+    protected $uriName;
 
     /**
      * Access cookie object 
@@ -65,7 +48,7 @@ class Request
      * 
      * @return array
      */ 
-    public function get() 
+    public function get($params = []) 
     {
         return $_GET;
     }
@@ -82,11 +65,11 @@ class Request
     }
 
     /**
-     * Get URI if its exists
+     * Get current URI if its exists
      * 
      * @return string 
      */ 
-    public function getUri()
+    public function getCurrentUri()
     {
         $url = $this->get('url');
 
@@ -94,6 +77,28 @@ class Request
             return $_SERVER['REQUEST_URI'];
         }
 
+    }
+
+    /**
+     * Set URI
+     *  
+     * @param $uri string
+     * 
+     * @return string
+     */ 
+    public function setUri($uri) 
+    {
+        return $this->uriName = $uri;
+    }
+
+    /**
+     * Get URI
+     * 
+     * @return string 
+     */ 
+    public function getUri()
+    {
+        return $this->uriName;
     }
 
     /**

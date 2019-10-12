@@ -7,12 +7,12 @@ use Exception;
 class InvalidArgumentsException extends Exception
 {
     /**
-     * Show error message if passed arguments is invalid
+     * Throw new exception with own message
      * 
-     * @return string 
+     * @return \Exception 
      */ 
-    public function showMessage()
+    public function __construct($message, $code = null)
     {
-        echo 'Passed arguments is not valid ';
+        parent::__construct($message, $code = 0);
     }
 }
