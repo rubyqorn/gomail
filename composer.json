@@ -12,7 +12,8 @@
     "autoload": {
         "psr-4": {
             "Gomail\\": "core/",
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Application\\": "application/"
         }
     },
     "require": {

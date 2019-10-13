@@ -109,7 +109,7 @@ class Request
     public function getFullUrl()
     {
         if ($this->getUri()) {
-            return 'http://' . $_SERVER['HTTP_HOST']  . $this->getUri();
+            return 'http://' . $_SERVER['HTTP_HOST']  . $this->getCurrentUri();
         }
 
         return 'http://' . $_SERVER['HTTP_HOST'];

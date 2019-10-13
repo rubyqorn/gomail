@@ -2,13 +2,12 @@
 
 namespace Gomail;
 
-use Gomail\Request\Request;
+use Gomail\Routing\Route;
 
 class App
 {
     public function start()
     {
-        throw new \Gomail\Request\Exceptions\InvalidArgumentsException('Error adsadsa');
-
+       return new Route();
     }
 }
