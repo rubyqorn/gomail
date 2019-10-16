@@ -11,6 +11,6 @@ class HomeController
      */ 
     public function index()
     {
-        echo 'Hello there';
+        return true;
     }
 }

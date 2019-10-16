@@ -6,9 +6,15 @@ use PHPUnit\Framework\TestCase;
 
 class ParseControllerTest extends TestCase
 {
-    /** @test */ 
-    public function testAssertTrue()
+    /**
+     * Test parse method which have return n array with params
+     * 
+     * @return bool 
+     */ 
+    public function testParseMethodWhichReturnArrayWithParams()
     {
-        $this->assertTrue(true);
+        $parser = new \Gomail\Routing\Parser\ParseController();
+        $controller = 'HomeController@index';
+        $this->assertIsArray($parser->parse($controller));
     }
 }
