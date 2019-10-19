@@ -195,4 +195,26 @@ class RequestTest extends TestCase
         $mock->method('authUserPassword')->willReturn('password123');
         $this->assertSame('password123', $mock->authUserPassword());
     }
+
+    /**
+     * Test that the method return string property
+     * 
+     * @return bool 
+     */ 
+    public function testConvertToStringReturnStringProperty()
+    {
+        $request = new \Gomail\Request\Request();
+        $this->assertIsString($request->convertToString('/', ['table', 'users', '1']));
+    }
+
+    /**
+     * Test that the method return array property
+     * 
+     * @return bool 
+     */ 
+    public function testConvertToArrayReturnArrayProperty()
+    {
+        $request = new \Gomail\Request\Request();
+        return $this->assertIsArray($request->convertToArray('/', 'table/users/1'));
+    }
 }

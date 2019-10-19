@@ -51,9 +51,8 @@ class ParseParamsFromURL
     protected function configFileHandler($fileName)
     {
         if (file_exists($fileName)) {
-            require_once $fileName;
-            return $regularExpressions;
-        } 
+            return require_once $fileName;  
+        }
     }
 
 }

@@ -96,4 +96,49 @@ class RouteTest extends TestCase
         $route = new \Gomail\Routing\Route();
         $this->assertIsString($route->paramsHandler('account/settings/{id}'));
     }
+
+    /**
+     * Test that the routeWithParams return called method
+     * 
+     * @return bool
+     */ 
+    public function testRouteWithParamsReturnObjectCalledMethod()
+    {
+        $mock = \Mockery::mock(\Gomail\Routing\Route::class)->shouldAllowMockingProtectedMethods();
+
+        $controller = new \Application\Controllers\HomeController();
+        $method = 'index';
+        $params = [12];
+
+        $mock->shouldReceive('routeWithParams')->andReturn(
+            call_user_func_array([$controller, $method], $params)
+        );
+
+        $this->assertSame(
+            call_user_func_array([$controller, $method], $params),
+            $mock->routeWithParams('/test', [$controller, $method], null)
+        );
+    }
+
+    /**
+     * Test that the routeWithoutParams return called method
+     * 
+     * @return bool
+     */ 
+    public function testRouteWithoutParamsReturnCalledMethod()
+    {
+        $mock = \Mockery::mock(\Gomail\Routing\Route::class)->shouldAllowMockingProtectedMethods();
+
+        $controller = new \Application\Controllers\HomeController();
+        $method = 'index';
+
+        $mock->shouldReceive('routeWithoutParams')->andReturn(
+            call_user_func([$controller, $method])
+        );
+
+        $this->assertSame(
+            call_user_func([$controller, $method]),
+            $mock->routeWithoutParams('/test', null)
+        );
+    }
 }

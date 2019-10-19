@@ -168,4 +168,30 @@ class Request
     {
         return $_SERVER['PHP_AUTH_PW'];
     }
+
+    /**
+     * Convert array to string
+     * 
+     * @param $params array
+     * @param $delimeter string
+     * 
+     * @return string
+     */ 
+    public function convertToString($delimeter, array $params) : string
+    {
+        return implode('/', $params);
+    }
+
+    /**
+     * Convert string to array
+     * 
+     * @param $params string
+     * @param $delimeter string
+     * 
+     * @return array
+     */ 
+    public function convertToArray($delimeter, string $params) : array
+    {
+        return explode('/', $params);
+    }
 }

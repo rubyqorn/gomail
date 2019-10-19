@@ -29,7 +29,7 @@ class Route extends Request
     /**
      * @var array 
      */ 
-    private $params;
+    private $params = [];
 
     /**
      * @var \Gomail\Routing\Parser\ParseURL 
@@ -79,7 +79,7 @@ class Route extends Request
      */ 
     public function paramsHandler($url) 
     {
-        $parsedUrl = explode('/', $url);
+        $parsedUrl = $this->convertToArray('/', $url);
         return $this->parseParams->parse($parsedUrl);
     }
 
@@ -94,15 +94,56 @@ class Route extends Request
      * */ 
     public function isUrlEqualMainPage(string $url, string $controller)
     {
-        if ($url == '/' || $url == null) {
-            if ($this->getCurrentUri() == $url) {
-                $parsedController = $this->parseController->parse($controller);
-                $controller = '\Application\Controllers\\' . $parsedController['0'];
-                $this->controller = new $controller;
-                $this->method = $parsedController['1'];
-                return call_user_func([$this->controller, $this->method], '');
-            }
+        if ($this->getCurrentUri() == $url) {
+            $parsedController = $this->parseController->parse($controller);
+            $controller = '\Application\Controllers\\' . $parsedController['0'];
+            $this->controller = new $controller;
+            $this->method = $parsedController['1'];
+            return call_user_func([$this->controller, $this->method]);
         }
+    }
+
+    /**
+     * Call method of class if route doesnt have a parameters
+     * 
+     * @param $currentUrl string
+     * @param $parsedController array
+     * @param $callback callable
+     * 
+     * @return object 
+     */ 
+    protected function routeWithParams($currentUrl, $parsedController, $callback = null)
+    {
+        if (is_callable($callback)) {
+            return call_user_func($callback);
+        }
+
+        $currentUrl = $this->convertToArray('/', $currentUrl);
+
+        $controller = '\Application\Controllers\\' . $parsedController['0'];
+        $this->controller = new $controller;
+        $this->method = $parsedController['1'];
+        $this->params = $currentUrl['2'] ? [$currentUrl['2']] : [];
+        return call_user_func_array([$this->controller, $this->method], $this->params);
+    }
+
+    /**
+     * Call method of class if route have an paramameters
+     * 
+     * @param $parsedController array
+     * @param $callback callable
+     * 
+     * @return object
+     */ 
+    protected function routeWithoutParams($parsedController, $callback = null)
+    {
+        if (is_callable($callback)) {
+            return call_user_func($callback);
+        }
+        $controller = '\Application\Controllers\\' . $parsedController['0'];
+        $this->controller = new $controller;
+        $this->method = $parsedController['1'];
+        return call_user_func([$this->controller, $this->method]);
     }
 
     /**
@@ -117,24 +158,22 @@ class Route extends Request
      */ 
     protected function registerRoute(string $method, string $url, string $controller, callable $callback = null)
     {
+        if ($url == '/' || $this->getCurrentUri() == null) {
+            return $this->isUrlEqualMainPage($url, $controller);
+        }
+
         $currentUrl = substr($this->getCurrentUri(), 1);
-        $this->isUrlEqualMainPage($url, $controller);
-        $url = '#' . $this->paramsHandler($url) . '#';
+        $pattern = '#' . $this->paramsHandler($url) . '#';
+        $parsedController = $this->parseController->parse($controller);
+        $urlLikeArray = $this->convertToArray('/', $pattern);
 
-        if ($this->match($url, $currentUrl)) {
-            if (is_callable($callback)) {
-                return call_user_func($callback);
-            }
+        if ($url == $currentUrl) {
+            return $this->routeWithoutParams($parsedController, $callback);
+        }
 
-            $parsedController = $this->parseController->parse($controller);
-            $currentUrl = explode('/', $currentUrl);
-
-            if (isset($parsedController) && is_array($parsedController)) {
-                $controller = '\Application\Controllers\\' . $parsedController['0'];
-                $this->controller = new $controller;
-                $this->method = $parsedController['1'];
-                $this->params = $currentUrl['2'] ? [$currentUrl['2'] ]: [];
-                return call_user_func_array([$this->controller, $this->method], $this->params);
+        if(count($urlLikeArray) == 3) {  
+            if ($this->match($pattern, $currentUrl)) {
+                return $this->routeWithParams($currentUrl, $parsedController, $callback);
             }
         }
     
@@ -166,7 +205,7 @@ class Route extends Request
      */ 
     public function postMethod(string $url, string $controller, callable $callback = null)
     {
-        return $this->registerRoute('POST', $url, $method, $callback);
+        return $this->registerRoute('POST', $url, $controller, $callback);
     }
 
      /**
@@ -180,7 +219,7 @@ class Route extends Request
      */ 
     public function putMethod(string $url, string $controller, callable $callback = null)
     {
-        return $this->registerRoute('PUT', $url, $method, $callback);
+        return $this->registerRoute('PUT', $url, $controller, $callback);
     }
 
      /**
@@ -194,6 +233,6 @@ class Route extends Request
      */ 
     public function deleteMethod(string $url, string $controller, callable $callback = null)
     {
-        return $this->registerRoute('DELETE', $url, $method, $callback);
+        return $this->registerRoute('DELETE', $url, $controller, $callback);
     }   
 }

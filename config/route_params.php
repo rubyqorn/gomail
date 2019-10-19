@@ -6,7 +6,7 @@
  * regular expressions
  */
 
-$regularExpressions = [
+return [
     '{id}' => '([0-9+])',
     '{slug}' => '([a-zA-Z_-]+)',
  ];
