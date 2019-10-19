@@ -5,6 +5,7 @@ namespace Gomail\Routing;
 use Gomail\Request\Request;
 use Gomail\Routing\Parser\{
     ParseController,
+    ParseParamsFromURL,
     ParseURL
 };
 
@@ -28,7 +29,7 @@ class Route extends Request
     /**
      * @var array 
      */ 
-    private $parameters;
+    private $params;
 
     /**
      * @var \Gomail\Routing\Parser\ParseURL 
@@ -40,10 +41,16 @@ class Route extends Request
      */ 
     private $parseController;
 
+    /**
+     * @var \Gomail\Routing\Parser\ParseParamsFromURL 
+     */ 
+    private $parseParams;
+
     public function __construct()
     {
         $this->parseUrl = new ParseURL();
         $this->parseController = new ParseController();
+        $this->parseParams = new ParseParamsFromURL();
     }
 
     /**
@@ -58,9 +65,22 @@ class Route extends Request
     {
         $this->url = null;
 
-        if ($urlFromFile == $urlFromQueryString) {
+        if (preg_match($urlFromFile, $urlFromQueryString)) {
             return $this->url = $urlFromQueryString;
         }
+    }
+
+    /**
+     * URL params processing
+     * 
+     * @param $url string 
+     * 
+     * @return string
+     */ 
+    public function paramsHandler($url) 
+    {
+        $parsedUrl = explode('/', $url);
+        return $this->parseParams->parse($parsedUrl);
     }
 
     /**
@@ -91,27 +111,30 @@ class Route extends Request
      * @param $method string
      * @param $url string
      * @param $controller string
+     * @param $callback callable
      * 
      * @return object 
      */ 
     protected function registerRoute(string $method, string $url, string $controller, callable $callback = null)
     {
-        $urlFromQueryString = substr($this->getCurrentUri(), 1);
-
+        $currentUrl = substr($this->getCurrentUri(), 1);
         $this->isUrlEqualMainPage($url, $controller);
+        $url = '#' . $this->paramsHandler($url) . '#';
 
-        if ($this->match($urlFromQueryString, $url)) {
-            if (is_callable($callback) && $callback !== null) {
+        if ($this->match($url, $currentUrl)) {
+            if (is_callable($callback)) {
                 return call_user_func($callback);
             }
 
             $parsedController = $this->parseController->parse($controller);
-            
+            $currentUrl = explode('/', $currentUrl);
+
             if (isset($parsedController) && is_array($parsedController)) {
                 $controller = '\Application\Controllers\\' . $parsedController['0'];
                 $this->controller = new $controller;
                 $this->method = $parsedController['1'];
-                return call_user_func_array([$this->controller, $this->method], '');
+                $this->params = $currentUrl['2'] ? [$currentUrl['2'] ]: [];
+                return call_user_func_array([$this->controller, $this->method], $this->params);
             }
         }
     

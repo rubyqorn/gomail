@@ -15,7 +15,7 @@ class RouteTest extends TestCase
     {
         $route = new \Gomail\Routing\Route();
 
-        $this->assertIsString($route->match('one', 'one'));
+        $this->assertIsString($route->match('#table/users/([0-9]+)#', 'table/users/1'));
 
     }
 
@@ -83,5 +83,17 @@ class RouteTest extends TestCase
             );
         }
         
+    }
+
+    /**
+     * Test paramsHandler method which have to return 
+     * regular expression pattern like string
+     * 
+     * @return bool
+     */ 
+    public function testParamsHandlerReturnRegExpPattern()
+    {
+        $route = new \Gomail\Routing\Route();
+        $this->assertIsString($route->paramsHandler('account/settings/{id}'));
     }
 }

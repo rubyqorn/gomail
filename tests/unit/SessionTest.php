@@ -30,7 +30,7 @@ class SessionTest extends TestCase
      */ 
     public function testGetMethod()
     {
-        $session = new \Gomail\Request\Session('sessionName', 'sessionValue');
+        $session = new \Gomail\Request\Session('sessionName', '');
 
         $this->assertIsObject($session->get());
     }
