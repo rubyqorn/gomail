@@ -67,7 +67,7 @@ class DatabaseSettingsFileHandler extends FileWorker
             require_once $this->filename;
 
             $settings = '<?php
-            return[
+            return [
                     "DB_HOST" => "'."{$host}".'",
                     "DB_USER" => "'."{$user}".'",
                     "DB_PASSWORD" => "'. "{$password}". '",

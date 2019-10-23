@@ -1,6 +1,6 @@
 <?php
 
-namespace Gomail\Database\Filehandler;
+namespace Gomail\Database\FileHandler;
 
 abstract class FileWorker
 {
