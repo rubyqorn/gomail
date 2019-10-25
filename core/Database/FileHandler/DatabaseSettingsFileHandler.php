@@ -66,13 +66,13 @@ class DatabaseSettingsFileHandler extends FileWorker
         if($this->checkExistsFile($this->filename)) {
             require_once $this->filename;
 
-            $settings = '<?php
+            $settings = "<?php
             return [
-                    "DB_HOST" => "'."{$host}".'",
-                    "DB_USER" => "'."{$user}".'",
-                    "DB_PASSWORD" => "'. "{$password}". '",
-                    "DB_NAME" => "' ."{$dbName}". '",
-                ];';
+                    'DB_HOST' => '"."{$host}"."',
+                    'DB_USER' => '"."{$user}"."',
+                    'DB_PASSWORD' => '". "{$password}". "',
+                    'DB_NAME' => '" ."{$dbName}". "',
+                ];";
 
 
             $readedFile = $this->readFile($this->filename);

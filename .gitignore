@@ -3,4 +3,4 @@ error.log
 vendor
 composer.lock
 .htaccess
-database.php
+env.ini
