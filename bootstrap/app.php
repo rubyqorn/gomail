@@ -17,4 +17,5 @@ require_once './application/Http/routes.php';
 
 $app = new App();
 $app->start();
+$app->runDatabase();
 
