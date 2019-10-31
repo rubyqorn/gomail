@@ -179,7 +179,7 @@ class Request
      */ 
     public function convertToString($delimeter, array $params) : string
     {
-        return implode('/', $params);
+        return implode($delimeter, $params);
     }
 
     /**
@@ -192,6 +192,6 @@ class Request
      */ 
     public function convertToArray($delimeter, string $params) : array
     {
-        return explode('/', $params);
+        return explode($delimeter, $params);
     }
 }

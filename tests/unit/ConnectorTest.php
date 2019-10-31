@@ -17,4 +17,27 @@ class ConnectorTest extends TestCase
             new \Gomail\Database\FileHandler\DatabaseSettingsFileHandler)
         );
     }
+
+    public function testSettingsReturnBoolean()
+    {
+        $reflection = new \ReflectionClass(\Gomail\Database\Connector::class);
+        $method = $reflection->getMethod('setSettings');
+        $method->setAccessible(true);
+
+        $this->assertIsBool($method->invoke(new \Gomail\Database\Connector(),
+            new \Gomail\Database\FileHandler\DatabaseSettingsFileHandler()
+        ));
+    }
+
+    public function testGetConfigFileReturnArray()
+    {
+        $reflection = new \ReflectionClass(\Gomail\Database\Connector::class);
+        $method = $reflection->getMethod('getConfigFile');
+        $method->setAccessible(true);
+
+        $this->assertIsArray($method->invoke(
+            new \Gomail\Database\Connector(),
+            new \Gomail\Database\FileHandler\DatabaseSettingsFileHandler()
+        ));
+    }
 }

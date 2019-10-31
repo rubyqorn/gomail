@@ -27,7 +27,7 @@ class Connector
      * @param \Gomail\Database\FileHandler\DatabaseSettingsFileHandler $settings 
      * 
      * @return bool
-     * */ 
+     */ 
     private function setSettings(DatabaseSettingsFileHandler $settings)
     {
         $config = $this->env->pushHashedPasswordIntoSettingsArray();
@@ -53,11 +53,9 @@ class Connector
      * Get config file with database settings
      * 
      * @return array
-     * */ 
-    private function getConfigFile()
+     */ 
+    private function getConfigFile(DatabaseSettingsFileHandler $settings)
     {
-        $settings = new DatabaseSettingsFileHandler();
-
         if ($this->setSettings($settings)) {
            return $this->getSettings($settings);
         }
@@ -69,10 +67,10 @@ class Connector
      * object
      * 
      * @return \PDO
-     * */ 
+     */ 
     private function connect()
     {
-        $config = $this->getConfigFile();
+        $config = $this->getConfigFile(new DatabaseSettingsFileHandler());
         
         try {
             $password = $this->env->getEnvFile()['DB_PASSWORD'];

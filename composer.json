@@ -16,10 +16,10 @@
             "Application\\": "application/"
         }
     },
-    "require": {
-        "phpunit/phpunit": "^8.4"
-    },
     "require-dev": {
         "mockery/mockery": "dev-master"
+    },
+    "require": {
+        "phpunit/phpunit": "^8.4"
     }
 }
