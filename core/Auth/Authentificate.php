@@ -8,9 +8,28 @@ use Gomail\Auth\Validator\EmailFieldsValidator;
 
 abstract class Authentificate extends Request
 {
+    /**
+     * Contains a POST array with fields
+     * 
+     * @var array
+     */ 
     protected $fields;
+
+    /**
+     * Contain an object of EmailFieldsValidator
+     * or TextFieldsValidator 
+     * 
+     * 
+     * @var \Gomail\Auth\Validator\EmailFieldsValidator 
+     * or \Gomail\Auth\Validator\TextFieldsValidator object  
+     */
     protected $validator;
 
+    /**
+     * Get POST array with fields content
+     * 
+     * @return array
+     */ 
     protected function getFields()
     {
         if (!empty($this->post())) {
@@ -18,6 +37,14 @@ abstract class Authentificate extends Request
         }
     }
 
+    /**
+     * Check field name and create needed object
+     * 
+     * @param $field string
+     * 
+     * @return \Gomail\Auth\Validator\EmailFieldsValidator
+     *          \Gomail\Auth\Validator\TextFieldsValidator
+     */ 
     protected function accessValidator($field)
     {
         if ($field == 'email') {
@@ -27,6 +54,14 @@ abstract class Authentificate extends Request
         return new TextFieldsValidator();
     }
 
+    /**
+     * Loop passed fields and call the method
+     * of accessed validator
+     *
+     * @param $fields array
+     * 
+     * @return string Return an error or success message
+     */ 
     protected function validatorHandler($fields)
     {
         foreach($fields as $fieldName => $value) {
@@ -34,4 +69,33 @@ abstract class Authentificate extends Request
             $this->validator->validate($value);
         }
     }
+
+    /**
+     * Clear sessions with error or success message
+     * and call validator handler which loop passed
+     * fields 
+     * 
+     * @param $fields array
+     * 
+     * @return string Return an error or success message
+     */ 
+    protected function validation($fields)
+    {
+        $this->clearMessages('error');
+        $this->clearMessages('success');
+        return $this->validatorHandler($fields);
+    }
+
+    /**
+     * Delete success or error messages
+     * 
+     * @param $name string
+     * 
+     * @return null
+     */ 
+    protected function clearMessages($name)
+    {
+        unset($_SESSION[$name]);
+    }
+
 }
