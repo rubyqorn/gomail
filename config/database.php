@@ -2,6 +2,6 @@
             return [
                     'DB_HOST' => 'localhost',
                     'DB_USER' => 'root',
-                    'DB_PASSWORD' => '$2y$10$ySbT1OsJ1WfUcM6o4zDtdei9TxCJwgwL6oB3Y6IGkYkaerOPVHapq',
+                    'DB_PASSWORD' => '$2y$10$qzpD0GxVAl5ijAISIqnI1OG84gwxQom0Xka4YmPlxKLYhAAUxZtju',
                     'DB_NAME' => 'gomail',
                 ];
