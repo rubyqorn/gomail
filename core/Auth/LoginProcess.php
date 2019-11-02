@@ -23,6 +23,5 @@ class LoginProcess extends Authentificate
         if ($this->user->loginUser($fields)) {
             return $this->cookie('login', "{$fields['email']}", time() + 86400 * 5)->set();
         }
-        
     }
 }

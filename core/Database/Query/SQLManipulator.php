@@ -137,4 +137,15 @@ class SQLManipulator extends QueryBuilder
         return $this;
     }
 
+    /**
+     * Delete SQL query. Can be used when one first 
+     * SQL conflict with second SQL
+     * 
+     * @return null
+     */ 
+    protected function unsetQuery()
+    {
+        unset($this->query);
+    }
+
 }
