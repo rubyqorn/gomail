@@ -18,6 +18,6 @@ class EmailFieldsValidator extends Validator
             return $this->request->session('success', 'Fields validation went successfully');
        } 
 
-       return $this->request->session('error', 'Email field have to be equal to pattern');
+       return $this->request->session('error', 'Email field have to be like your@gmail.com');
     }
 }

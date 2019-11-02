@@ -23,6 +23,6 @@ class TextFieldsValidator extends Validator
             }
         }
 
-        $this->request->session('success', 'Fields validation went successfully');
+        return $this->request->session('success', 'Fields validation went successfully');
     }
 }

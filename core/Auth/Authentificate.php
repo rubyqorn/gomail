@@ -3,6 +3,7 @@
 namespace Gomail\Auth;
 
 use Gomail\Request\Request;
+use Application\Models\User;
 use Gomail\Auth\Validator\TextFieldsValidator;
 use Gomail\Auth\Validator\EmailFieldsValidator;
 
@@ -23,7 +24,17 @@ abstract class Authentificate extends Request
      * @var \Gomail\Auth\Validator\EmailFieldsValidator 
      * or \Gomail\Auth\Validator\TextFieldsValidator object  
      */
-    protected $validator;
+    protected $validator = null;
+
+    /**
+     * @var \Application\Models\User
+     */ 
+    protected $user;
+
+    public function __construct()
+    {
+        $this->user = new User();
+    }
 
     /**
      * Get POST array with fields content

@@ -9,8 +9,19 @@ use PDO;
 
 class Connector
 {
+    /**
+     * @var \Gomail\Database\FileHandler\EnvFileHandler
+     */ 
     private $env;
+    
+    /**
+     * @var \Gomail\Hasher\Verfier
+     */ 
     private $verifier;
+    
+    /**
+     * @var \PDO
+     */ 
     protected $connection = null;
 
     public function __construct()
