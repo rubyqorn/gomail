@@ -15,7 +15,7 @@ class EmailFieldsValidator extends Validator
     public function validate($field)
     {
        if (preg_match("#([a-zA-Z0-9_-])@(gmail|email|yandex)\.(com|ru)#", $field)) {
-            return $this->request->session('success', 'Fields validation went successfully');
+            return true;
        } 
 
        return $this->request->session('error', 'Email field have to be like your@gmail.com');

@@ -15,6 +15,26 @@ class User extends Model
     protected $table = 'users';
 
     /**
+     * Check if user exists. If user with passed in email
+     * field exists return boolean property and if it's
+     * not true delete SQL query
+     * 
+     * @param $email string
+     * 
+     * @return bool
+     */ 
+    protected function checkUserExists($email) 
+    {
+        $user = $this->selectAll()->where("email = '{$email}' ")->getOne();
+
+        if ($user['email'] == $email) {
+            return true;
+        }
+        
+        return $this->unsetQuery();
+    }
+
+    /**
      * Register new user
      * 
      * @param $fields array
@@ -25,15 +45,16 @@ class User extends Model
     {
         if (is_array($fields)) {
 
-            if ($this->selectRows('email')->where(" email = '{$fields['email']}' ")->getOne()) {
+            if ($this->checkUserExists($fields['email'])) {
                 return false;
-            } else {
-                $password = $this->hasher->hash($fields['password']);
-
-                return $this->insert('name, surname, email, password, country, city', '?,?,?,?,?,?', [
-                    $fields['name'], $fields['surname'], $fields['email'], $password, null, null
-                ]);
             }
+
+            $password = $this->hasher->hash($fields['password']);
+
+            return $this->insert('name, surname, email, password, country, city', '?,?,?,?,?,?', [
+                $fields['name'], $fields['surname'], $fields['email'], $password, null, null
+            ]);
+            
         }
     }
 
