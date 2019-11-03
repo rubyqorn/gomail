@@ -10,5 +10,3 @@
  */ 
 
 $route->getMethod('/', 'HomeController@index');
-$route->postMethod('login', 'Auth\LoginController@login');
-$route->postMethod('register', 'Auth\RegisterController@register');
