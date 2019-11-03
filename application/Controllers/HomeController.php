@@ -2,7 +2,7 @@
 
 namespace Application\Controllers;
 
-class HomeController
+class HomeController extends Controller
 {
     /**
      * Greet message 
