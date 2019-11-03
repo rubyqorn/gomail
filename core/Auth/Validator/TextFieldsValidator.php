@@ -17,12 +17,14 @@ class TextFieldsValidator extends Validator
     {
         $field = htmlspecialchars($field);
         
-        if (strlen($field )< 3 || strlen($field) > 120) {
-            if (preg_match('#([0-9a-zA-Z]+)#', $field)) {
-                return true;              
-            }
-
-            return $this->request->session('error', 'Fields doesnt have to be bigger than 120 or smaller than 3 symbols');
+        if (strlen($field) < 3 || strlen($field) > 120) {
+            return $this->request->session('error', 'Fields doesnt have to be bigger than 120 or smaller than 3 symbols');   
         }
+
+        if (preg_match('#([0-9a-zA-Z_-]+)#', $field)) {
+            return true;
+        }
+
+        return $this->session('error', 'Not a valid data');
     }
 }
