@@ -1,7 +1,7 @@
 <?php
             return [
-                    'DB_HOST' => 'locahost',
+                    'DB_HOST' => 'localhost',
                     'DB_USER' => 'root',
-                    'DB_PASSWORD' => 'password',
-                    'DB_NAME' => 'DB',
+                    'DB_PASSWORD' => '$2y$10$.kDeFkj2OZBLZjN4MPw/AeoQ0jmQ5Koda9rcRQJHY7AWgFgmns3mu',
+                    'DB_NAME' => 'gomail',
                 ];
