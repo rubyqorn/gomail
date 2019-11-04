@@ -126,6 +126,20 @@ class Request
     }
 
     /**
+     * Check if the HTTP method equal passed method
+     * 
+     * @param $method string
+     * 
+     * @return bool
+     */ 
+    public function checkHttpMethod($method)
+    {
+        if ($this->getHttpMethod() == $method) {
+            return $method;
+        } 
+    }
+
+    /**
      * Redirect a user to the passed url
      * 
      * @param $url string
