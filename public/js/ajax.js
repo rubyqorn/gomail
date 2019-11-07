@@ -118,40 +118,6 @@ $(document).ready(function() {
         })
     });
 
-    // Registration
-    $('#register #reg-btn').click(function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: '/register',
-            type: 'POST',
-            data: {
-                name: $('#register #name').val(),
-                surname: $('#register #surname').val(),
-                email: $('#register #email').val(),
-                password: $('#register #password').val(),
-            },
-        }).done(function(data) {
-            console.log(data);
-        });
-    });
-
-    // Authentification
-    $('#login #login-btn').click(function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: './views/auth/parts/ajax.php',
-            type: 'POST',
-            data: {
-                email: $('#login #email').val(),
-                password: $('#login #password').val(),
-            },
-        }).done(function(data) {
-            window.location.href = 'http://www.gomail.com/';
-        });
-    })
-
     // Searching
     $('#searching .search-button').click(function(event) {
         event.preventDefault();
