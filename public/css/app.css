@@ -1,0 +1,137 @@
+body {
+    width: 100%;
+    height: 100%;
+}
+
+.montserrat-font {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.p-0 {
+    padding: 0;
+}
+
+.close-button {
+    background-color: transparent;
+    border: none;
+}
+
+.spam-button, .trash-button, .star-button {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar-white {
+    border-bottom: 5px solid #333;
+    display: flex;
+}
+
+.bg-light-grey {
+    background-color: #d1cece;
+}
+
+.active-link {
+    color: #e05757 !important;
+    font-weight: bold;
+}
+
+.overlay {
+    opacity: 0.5;
+}
+
+#navigation-panel a.h3 {
+    text-decoration: none;
+    color: #7a7878;
+}
+
+#navigation-panel .search-button {
+    background-color: transparent;
+    border: none;
+    color: #808080;
+    cursor: pointer;
+}
+
+#navigation-panel .form-control {
+    background-color: transparent;
+    border: none;
+}
+
+#navigation-panel .avatar {
+    width: 10%;
+    height: 10%;
+}
+
+#content #sidebar-menu  {
+    list-style-type: none;
+    overflow: scroll;
+    overflow-x: hidden;
+    width: 70%;
+    height: 165px;
+    margin-top: 50px;
+}
+
+#content #sidebar-menu .sidebar-item {
+    padding: 2%;
+}
+
+#content #sidebar-menu .sidebar-link {
+    color: #808080 !important;
+}
+
+#content #sidebar #user-settings img {
+    width: 8%;
+}
+
+#content #messages {
+    padding: 0;
+}
+
+#success-message, #error-message {
+    position: absolute;
+    bottom: 10px;
+    left: 5px;
+}
+
+
+#login, #register {
+    margin-top: 100px;
+}
+
+#account {
+    background: url('../img/account-background.png') fixed;
+    height: 200px;
+    position: relative;;
+    opacity: 0.6;
+}
+
+#account img {
+    width: 30%;
+    margin-top: 160px;
+    border: none;
+    border-radius: 100px;
+}
+
+.chat-content {
+    position: absolute;
+    bottom: 10px;
+    right: 40px;
+    border: 1px solid #cac7c7;
+    border-radius: 3px;
+}
+
+.chat-header {
+    background-color: #444;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+.chat-body {
+    padding: 10px 50px 10px 50px;
+}
+
+.chat-body .form-control {
+    font-size: 10px;
+    border: none;
+}

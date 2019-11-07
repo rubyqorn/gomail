@@ -5,12 +5,14 @@ namespace Application\Controllers;
 class HomeController extends Controller
 {
     /**
-     * Greet message 
+     * Show home page 
      * 
-     * @return string
+     * @return bool
      */ 
     public function index()
     {
-        return true;
+        $title = 'Почта';
+
+        $this->view->render('home', compact('title'));
     }
 }
