@@ -33,7 +33,7 @@
                                     <label for="name" class="sr-only">Name</label>
                                     <input type="text" id="name" class="form-control mr-2 mr-sm-2 mt-3" name="name" placeholder="John" required>
                                     <small class="text-muted">
-                                        Ваше имя
+                                        Ваше имя (2-15 символов)
                                     </small>
                                 </div>
 
@@ -41,7 +41,7 @@
                                     <label for="surname" class="sr-only">Surname</label>
                                     <input type="text" id="surname" name="surname" class="form-control mt-3 mr-2 mr-sm-2" placeholder="Doe" required>
                                     <small class="text-muted">
-                                        Ваше фамилия
+                                        Ваше фамилия (4-15 символов)
                                     </small>
                                 </div>
 
@@ -58,7 +58,7 @@
                             <label for="password" class="sr-only">Password</label>
                             <input type="password" class="form-control mt-3 mb-2 mr-sm-2" name="password" id="password" placeholder="Password" required>
                             <small class="text-muted">
-                                Ваш пароль
+                                Ваш пароль (не меньше 6 символов)
                             </small>
                             
 

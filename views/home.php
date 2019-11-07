@@ -24,7 +24,7 @@
 
     <!-- Main navbar-content -->
     <div class="col-lg-1 col-md-1 col-2 d-flex justify-content-right" id="navbar-content">
-        <a href="/" class="btn btn-outline-primary btn-sm text-uppercase ml-2">
+        <a href="/logout" class="btn btn-outline-primary btn-sm text-uppercase ml-2">
             <small>
                 Logout
             </small>    
@@ -400,29 +400,31 @@
     </div>
 </section>
 
-    <!-- Success message -->
-    <div class="col-lg-3 col-md-3 col-4 d-none" id="success-message">
-        <div class="alert alert-success fade show alert-dismissible">
-            <strong class="text-dark">
-                Success!
-            </strong>
-            <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
-        </div> 
-    </div>
-
-    <!-- Error message -->
-    <div class="col-lg-3 col-md-3 col-3 d-none" id="error-message">
-        <div class="alert alert-danger alert-dismissible fade show">
-            <strong>
-                Error!
-            </strong>
-            <button class="close" data-dismiss="alert">
-                <span>&times;</span>
-            </button>
+    <?php if(isset($_SESSION['success'])): ?>
+        <!-- Success message -->
+        <div class="col-lg-3 col-md-3 col-4" id="success-message">
+            <div class="alert alert-success fade show alert-dismissible">
+                <strong class="text-dark">
+                    <?php echo $_SESSION['success']; ?>
+                </strong>
+                <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+            </div> 
         </div>
-    </div>
+    <?php elseif(isset($_SESSION['error'])): ?>
+        <!-- Error message -->
+        <div class="col-lg-3 col-md-3 col-3" id="error-message">
+            <div class="alert alert-danger alert-dismissible fade show">
+                <strong>
+                    <?php echo $_SESSION['error']; ?>
+                </strong>
+                <button class="close" data-dismiss="alert">
+                    <span>&times;</span>
+                </button>
+            </div>
+        </div>
+    <?php endif; ?>
 
 <!-- Write new message -->
 <div class="chat-content col-lg-5 col-md-5 col-8 p-0 d-none" id="write-message">
