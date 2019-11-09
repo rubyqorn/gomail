@@ -22,4 +22,17 @@ class Controller
         $this->request = new Request();
         $this->view = new View();
     }
+
+    /**
+     * Check if user have cookie named login
+     * and redirect to current URI
+     * 
+     * @return bool
+     */
+    public function checkIsUserAuth()
+    {
+        if (!isset($_COOKIE['login'])) {
+            return $this->request->redirect('/login');
+        }
+    }
 }

@@ -11,8 +11,9 @@ class HomeController extends Controller
      */ 
     public function index()
     {
+        $this->checkIsUserAuth();
+        
         $title = 'Почта';
-
         $this->view->render('home', compact('title'));
     }
 }
