@@ -15,6 +15,19 @@ class AppTest extends TestCase
     {
         $app = new \Gomail\App();
 
-        $this->assertTrue(true);
+        $this->assertInstanceOf(\Gomail\Routing\Route::class, $app->start());
+    }
+
+    /**
+     * Test runDatabase method which have to return connector
+     * object
+     * 
+     * @return bool 
+     */ 
+    public function testRunDatabaseReturnConnectorObject()
+    {
+        $app = new \Gomail\App();
+
+        $this->assertInstanceOf(\Gomail\Database\Connector::class, $app->runDatabase());
     }
 }

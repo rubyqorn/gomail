@@ -73,4 +73,28 @@ class User extends Model
             return true;
         }
     }
+
+    /**
+     * Get user id by email string
+     * 
+     * @param $email string
+     * 
+     * @return array
+     */ 
+    public function getUserId($email)
+    {
+        $this->unsetQuery();
+        return $this->selectRows('id')->where(" email = '{$email}' ")->getOne();
+    }
+
+    /**
+     * Get auth user
+     * 
+     * @return array
+     */ 
+    public function getAuthUser()
+    {
+        $this->unsetQuery();
+        return $this->selectAll()->where("email = '{$_COOKIE['login']}' ")->getOne();  
+    }
 }
