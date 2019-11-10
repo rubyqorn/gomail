@@ -94,30 +94,6 @@ $(document).ready(function() {
 
     });
 
-    // Send message from chat window
-    $('#send-message').click(function(event) {
-        event.preventDefault();
-        $.ajax({
-            url: './views/auth/parts/ajax.php',
-            type: 'POST',
-            data: {
-                email: $('#email').val(),
-                title: $('#title').val(),
-                message: $('#message-content').val(),
-            },
-            beforeSend: function() {
-                $('#content').wrap('<div class="overlay"></div>');
-            }
-        })
-        .done(function(data) {
-            $('#success-message').removeClass('d-none');
-            $('#content').unwrap();
-        })
-        .fail(function() {
-            $('#error-message').removeClass('d-none');
-        })
-    });
-
     // Searching
     $('#searching .search-button').click(function(event) {
         event.preventDefault();

@@ -449,7 +449,7 @@
 </div>
     <div class="chat-body bg-white">
         <!-- Main form -->
-        <form action="/" method="post">
+        <form action="/send" method="post">
             <div class="form-group">
                 <input type="email" name="email" class="form-control border-bottom montserrat-font" id="email" placeholder="Кому"  required>
             </div>
