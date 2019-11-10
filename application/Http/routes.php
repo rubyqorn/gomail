@@ -15,3 +15,4 @@ $route->postMethod('auth', 'Auth\LoginController@login');
 $route->getMethod('registration', 'Auth\RegistrationController@show');
 $route->postMethod('register', 'Auth\RegistrationController@registration');
 $route->postMethod('logout', 'Auth\LogoutController@logout');
+$route->postMethod('send', 'SendMessageController@send');

@@ -32,7 +32,7 @@ class Controller
     public function checkIsUserAuth()
     {
         if (!isset($_COOKIE['login'])) {
-            return $this->request->redirect('/login');
+            $this->request->redirect('/login');
         }
     }
 }

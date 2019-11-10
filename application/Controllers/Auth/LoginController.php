@@ -45,7 +45,7 @@ class LoginController extends Controller
         if ($this->request->checkHttpMethod('POST')) {
             if ($this->process->login($this->request->post())) {
                 $this->request->redirect('/');
-                return $this->request->session('success', 'Вы успешно пошли');
+                return $this->request->session('success', 'Вы успешно вошли');
             }
 
             $this->request->redirect('/login');
