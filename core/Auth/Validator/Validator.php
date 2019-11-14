@@ -3,8 +3,9 @@
 namespace Gomail\Auth\Validator;
 
 use Gomail\Request\Request;
+use Gomail\Auth\Authentificate;
 
-class Validator
+class Validator extends Authentificate
 {
     /**
      * Array with available fields
@@ -14,13 +15,8 @@ class Validator
     protected $fieldsNames = [
         'name', 'surname', 'email', 'password',
         'country', 'city', 'message', 'title', 
-        'search' 
+        'search', 'image' 
     ];
-
-    public function __construct()
-    {
-        $this->request = new Request;
-    }
 
     /**
      * Get keys of POST array

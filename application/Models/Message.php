@@ -36,6 +36,16 @@ class Message extends Model
     }
 
     /**
+     * Get messages which was sent for auth user
+     * 
+     * @return array
+     */ 
+    public function getMessages()
+    {
+        return $this->selectAll()->where(" whom_sent = '{$this->user->getAuthUser()['id']}' ")->getAll();
+    }
+
+    /**
      * Get user id whom was sent a message
      * 
      * @var $email string

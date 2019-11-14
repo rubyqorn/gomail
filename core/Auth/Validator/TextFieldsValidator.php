@@ -18,7 +18,7 @@ class TextFieldsValidator extends Validator
         $field = htmlspecialchars($field);
         
         if (strlen($field) < 2 || strlen($field) > 120) {
-            return $this->request->session('error', 'Fields doesnt have to be bigger than 120 or smaller than 3 symbols');   
+            return $this->session('error', 'Fields doesnt have to be bigger than 120 or smaller than 3 symbols');   
         }
 
         if (preg_match('#([0-9a-zA-Z_-]+)#', $field)) {
