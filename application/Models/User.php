@@ -3,9 +3,12 @@
 namespace Application\Models;
 
 use Gomail\Database\Model;
+use Application\Models\Traits\Validator;
 
 class User extends Model
 {
+    use Validator;
+
     /**
      * Table name which will be using
      * with this model
@@ -96,5 +99,42 @@ class User extends Model
     {
         $this->unsetQuery();
         return $this->selectAll()->where("email = '{$_COOKIE['login']}' ")->getOne();  
+    }
+
+    /**
+     * Update user settings
+     * 
+     * @param $settings array
+     * 
+     * @return bool
+     */ 
+    public function updateUserSettings($settings)
+    {
+        $this->validation($settings);
+
+        if (!isset($_SESSION['error'])) {
+
+            array_push($settings, $this->getAuthUser()['id']);
+            $id = array_pop($settings);
+            $this->unsetQuery();
+
+            if (count($settings) < 5) {
+                return $this->update('country = ?, city = ?, image = ?', 'id = ?', [
+                    !empty($settings['country']) ? $settings['country'] : NULL, 
+                    !empty($settings['city']) ? $settings['city'] : NULL, 
+                    !empty($settings['image']) ? $settings['image'] : 'avatar.png', $id
+                ]);
+            }
+
+            return $this->update('name = ?, surname = ?, country = ?, city = ?, image = ?', 'id = ?', [
+                $settings['name'], $settings['surname'], 
+                !empty($settings['country']) ? $settings['country'] : NULL, 
+                !empty($settings['city']) ? $settings['city'] : NULL, 
+                !empty($settings['image']) ? $settings['image'] : 'avatar.png', $id
+            ]);
+    
+        }
+
+        return $_SESSION['error'];
     }
 }
