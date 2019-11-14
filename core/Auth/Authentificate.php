@@ -90,7 +90,7 @@ abstract class Authentificate extends Request
      * 
      * @return string Return an error or success message
      */ 
-    protected function validation($fields)
+    public function validation($fields)
     {
         $this->clearMessages('error');
         $this->clearMessages('success');

@@ -38,12 +38,6 @@
     <div class="container-fluid">
         <div class="row">
 
-            <div class="col-lg-12 text-center">
-            <div class="spinner-border text-primary" role="status">
-                <span class="sr-only">Loading...</span>
-            </div>
-            </div>
-
             <!-- Sidebar content -->
             <div class="col-lg-3 col-md-3 col-4 p-2" id="sidebar">
             
@@ -57,58 +51,60 @@
 
             <ul class="sidebar-menu col-lg-12 col-12 col-md-12 border-top border-bottom" id="sidebar-menu">
                 <li class="sidebar-item montserrat-font">
-                        <a href="#index" class="sidebar-link active-link">
+                        <a href="/home" class="sidebar-link active-link">
                             <i class="fas fa-inbox mt-1 mr-2 float-left"></i> Все
                         </a>
                     </li>
                 <li class="sidebar-item montserrat-font">
-                        <a href="#check" class="sidebar-link">
+                        <a href="/check" class="sidebar-link">
                             <i class="fas fa-check mt-1 mr-2 float-left"></i> Отмеченные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="#sent" class="sidebar-link">
+                        <a href="/sent" class="sidebar-link">
                         <i class="far fa-paper-plane mt-1 mr-2 float-left"></i> Отправленные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="#important" class="sidebar-link">
+                        <a href="/important" class="sidebar-link">
                         <i class="far fa-star mt-1 mr-2 float-left"></i> Важные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="#spam" class="sidebar-link">
+                        <a href="/spam" class="sidebar-link">
                             <i class="fas fa-exclamation-circle mt-1 mr-2 float-left"></i> Спам
                         </a>
                     </li>
             </ul>
 
             <div class="col-lg-12 d-flex border-bottom pb-3" id="user-settings">
-                <img src="./public/img/avatar.png" alt="">
+                <img src="./public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
                 <a role="button" class="dropdown-toggle ml-3 text-black-50 montserrat-font" data-toggle="dropdown">
                     <small>
-                        Anton
+                        <?php echo $authUser['name']; ?>
                     </small>
                 </a>
                 <div class="dropdown-menu">
-                    <div class="col-lg-12">
-                        <img src="./public/img/avatar.png" alt="">
-                    </div>
-                    <div class="col-lg-12">
-                        <p class="text-black-50 montserrat-font">
-                            <small>
-                                Anton Hideger
-                            </small>
-                        </p>
-                        <p class="text-black-50 montserrat-font">
-                            <small>
-                            antonhideger1337@gmail.com
-                            </small>
-                        </p>
-                        <a href="/settings.php" class="text-secondary montserrat-font float-right">
-                            <i class="fas fa-cog"></i>
-                        </a>
-                    </div>
+                    
+                        <div class="col-lg-12">
+                            <img src="./public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
+                        </div>
+                        <div class="col-lg-12">
+                            <p class="text-black-50 montserrat-font">
+                                <small>
+                                    <?php echo $authUser['name'] . ' ' . $authUser['surname']; ?>
+                                </small>
+                            </p>
+                            <p class="text-black-50 montserrat-font">
+                                <small>
+                                    <?php echo $authUser['email']; ?>
+                                </small>
+                            </p>
+                            <a href="/settings" class="text-secondary montserrat-font float-right">
+                                <i class="fas fa-cog"></i>
+                            </a>
+                        </div>
+                    
                 </div>
             </div>
 
@@ -157,230 +153,66 @@
                 <!-- Messages -->
                 <div class="col-lg-12 mt-3" id="messages">
 
-                    <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
-                        <div class="col-lg-3 d-flex">
-                            <input type="checkbox" name="check" class="checkbox-item mt-1" value="1">
-                            <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                GoMail
-                            </p>
-                        </div>
-                        <div class="col-lg-7">
-                            <p class="text-black-50 montserrat-font">
-                                <small>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, assumenda!
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 d-flex">
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" name="trash" class="trash-button text-secondary" id="replace-in">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="star-button text-secondary" id="replace-in">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" name="spam" class="spam-button text-secondary mr-1" id="replace-in">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <p class="text-secondary montserrat-font">
-                                <small>
-                                    Sep 13
-                                </small>
-                            </p>
-                            
-                        </div>
-                    </div>
+                    <?php if(!empty($messages)): ?>
 
-                    <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
-                        <div class="col-lg-3 d-flex">
-                            <input type="checkbox" name="check" class="checkbox-item mt-1" value="2">
-                            <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                GoMail
-                            </p>
-                        </div>
-                        <div class="col-lg-7">
-                            <p class="text-black-50 montserrat-font">
-                                <small>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, assumenda!
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 d-flex">
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="trash-button text-secondary" id="replace-in">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="star-button text-secondary" id="replace-in">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <p class="text-secondary montserrat-font">
-                                <small>
-                                    Sep 13
-                                </small>
-                            </p>
-                            
-                        </div>
-                    </div>
+                        <?php foreach($messages as $message): ?>
 
-                    <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
-                        <div class="col-lg-3 d-flex">
-                            <input type="checkbox" name="check" class="checkbox-item mt-1" value="3">
-                            <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                GoMail
-                            </p>
+                        <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
+                            <div class="col-lg-3 d-flex">
+                                <input type="checkbox" name="check" class="checkbox-item mt-1" value="<?php echo $message['message_id']; ?>">
+                                <p class="text-black-50 montserrat-font ml-3 mt-3">
+                                    <?php echo $message['title']; ?>
+                                </p>
+                            </div>
+                            <div class="col-lg-7">
+                                <p class="text-black-50 montserrat-font">
+                                    <small>
+                                        <?php echo $message['content'] ?>
+                                    </small>
+                                </p>
+                            </div>
+                            <div class="col-lg-2 d-flex">
+                                <form action="/" method="post">
+                                    <div class="form-group">
+                                        <button type="submit" class="trash-button text-secondary" id="replace-in">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <form action="/" method="post">
+                                    <div class="form-group">
+                                        <button type="submit" class="star-button text-secondary" id="replace-in">
+                                            <i class="far fa-star"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <form action="/" method="post">
+                                    <div class="form-group">
+                                        <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
+                                            <i class="fas fa-exclamation-circle"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <p class="text-secondary montserrat-font">
+                                    <small>
+                                        <?php echo date('M d', strtotime($message['sent_at'])) ?>
+                                    </small>
+                                </p>
+                                
+                            </div>
                         </div>
-                        <div class="col-lg-7">
-                            <p class="text-black-50 montserrat-font">
-                                <small>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, assumenda!
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 d-flex">
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="trash-button text-secondary" id="replace-in">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="star-button text-secondary" id="replace-in">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <p class="text-secondary montserrat-font">
-                                <small>
-                                    Sep 13
-                                </small>
-                            </p>
-                            
-                        </div>
-                    </div>
 
-                    <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
-                        <div class="col-lg-3 d-flex">
-                            <input type="checkbox" name="check" class="checkbox-item mt-1" value="4">
-                            <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                GoMail
-                            </p>
-                        </div>
-                        <div class="col-lg-7">
-                            <p class="text-black-50 montserrat-font">
-                                <small>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, assumenda!
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 d-flex">
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="trash-button text-secondary" id="replace-in">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="star-button text-secondary" id="replace-in">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <p class="text-secondary montserrat-font">
-                                <small>
-                                    Sep 13
-                                </small>
-                            </p>
-                            
-                        </div>
-                    </div>
+                        <?php endforeach; ?>
 
-                    <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
-                        <div class="col-lg-3 d-flex">
-                            <input type="checkbox" name="check" class="checkbox-item mt-1" value="5">
-                            <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                GoMail
+                    <?php else: ?>
+
+                        <div class="col-lg-12 text-center">
+                            <p class="text-dark montserrat-font">
+                                У вас нет новых сообщений
                             </p>
                         </div>
-                        <div class="col-lg-7">
-                            <p class="text-black-50 montserrat-font">
-                                <small>
-                                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate, assumenda!
-                                </small>
-                            </p>
-                        </div>
-                        <div class="col-lg-2 d-flex">
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="trash-button text-secondary" id="replace-in">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="star-button text-secondary" id="replace-in">
-                                        <i class="far fa-star"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <form action="/" method="post">
-                                <div class="form-group">
-                                    <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
-                                        <i class="fas fa-exclamation-circle"></i>
-                                    </button>
-                                </div>
-                            </form>
-                            <p class="text-secondary montserrat-font">
-                                <small>
-                                    Sep 13
-                                </small>
-                            </p>
-                            
-                        </div>
-                    </div>
+
+                    <?php endif;?>
 
                     <!-- Pagination -->
                     <div class="col-lg-12 p-2" id="pagination">

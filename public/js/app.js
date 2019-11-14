@@ -14,7 +14,7 @@ $(document).ready(function() {
         const href = $(this).attr('href');
         const link = './views/' + href.substring(1) + '.php';
 
-        if (link == './views/home.php') {
+        if (link == './views/home.php') {    
             $('#messages').load(link + ' #messages');
         } else {
             $('#messages').load(link);

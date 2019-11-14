@@ -18,6 +18,6 @@ class EmailFieldsValidator extends Validator
             return true;
        } 
 
-       return $this->request->session('error', 'Email field have to be like your@gmail.com');
+       return $this->session('error', 'Email field have to be like your@gmail.com');
     }
 }
