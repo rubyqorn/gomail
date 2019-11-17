@@ -12,12 +12,11 @@ $(document).ready(function() {
         $(this).addClass('active-link');
 
         const href = $(this).attr('href');
-        const link = './views/' + href.substring(1) + '.php';
 
-        if (link == './views/home.php') {    
-            $('#messages').load(link + ' #messages');
+        if (href == '/') {    
+            $('#messages').load(href + ' #messages');
         } else {
-            $('#messages').load(link);
+            $('#messages').load(href);
         }
         
     })

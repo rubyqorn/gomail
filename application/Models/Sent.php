@@ -13,4 +13,14 @@ class Sent extends Model
      * @var string
      */
     protected $table = 'sent';
+
+    /**
+     * Get all records from sent table 
+     * 
+     * @return array
+     */ 
+    public function getSentMessages()
+    {
+        return $this->selectAll()->getAll();
+    }
 }

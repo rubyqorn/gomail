@@ -4,6 +4,7 @@ namespace Application\Controllers;
 
 use Application\Models\Message;
 use Application\Models\User;
+use Application\Models\Test;
 
 class HomeController extends Controller
 {

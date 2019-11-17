@@ -13,4 +13,14 @@ class Check extends Model
      * @var string
      */
     protected $table = 'checked';
+
+    /**
+     * Get all messages from table named checked
+     * 
+     * @return array
+     */ 
+    public function getCheckedMessages()
+    {
+        return $this->selectAll()->getAll();
+    }
 }

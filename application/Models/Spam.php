@@ -13,4 +13,14 @@ class Spam extends Model
      * @var string
      */
     protected $table = 'spamed';
+
+    /**
+     * Get all records from spam table
+     * 
+     * @return array
+     */ 
+    public function getSpamedMessages()
+    {
+        return $this->selectAll()->getAll();
+    }
 }
