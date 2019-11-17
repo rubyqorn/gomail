@@ -13,4 +13,14 @@ class Important extends Model
      * @var string
      */ 
     protected $table = 'important';
+
+    /**
+     * Get all records from important table
+     * 
+     * @return array
+     */ 
+    public function getImportantMessages()
+    {
+        return $this->selectAll()->getAll();
+    }
 }

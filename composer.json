@@ -20,6 +20,7 @@
         "mockery/mockery": "dev-master"
     },
     "require": {
-        "phpunit/phpunit": "^8.4"
+        "phpunit/phpunit": "^8.4",
+        "illuminate/pagination": "^6.5"
     }
 }

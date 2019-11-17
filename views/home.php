@@ -51,7 +51,7 @@
 
             <ul class="sidebar-menu col-lg-12 col-12 col-md-12 border-top border-bottom" id="sidebar-menu">
                 <li class="sidebar-item montserrat-font">
-                        <a href="/home" class="sidebar-link active-link">
+                        <a href="/" class="sidebar-link active-link">
                             <i class="fas fa-inbox mt-1 mr-2 float-left"></i> Все
                         </a>
                     </li>
