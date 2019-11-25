@@ -183,6 +183,26 @@ class Request
     }
 
     /**
+     * Check if page is available
+     * 
+     * @return array
+     */ 
+    public function checkPageAvalibility()
+    {
+        return strstr($this->getCurrentUri(), 'page') ? explode('/', strstr($this->getCurrentUri(), 'page')) : [];
+    }
+
+    /**
+     * Get page number if the page is available
+     * 
+     * @return int
+     */ 
+    public function getPageNumber()
+    {
+        return !empty($this->checkPageAvalibility()) ? $this->checkPageAvalibility()['1'] : die('Страница не задана');
+    }
+
+    /**
      * Convert string to array
      * 
      * @param $params string
