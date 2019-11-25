@@ -15,11 +15,6 @@ abstract class Model extends SQLManipulator
     protected $hasher;
 
     /**
-     * @var \Illuminate\Pagination\Paginator
-     */ 
-    protected $paginator;
-
-    /**
      * @var \Gomail\Hasher\Verifier 
      */ 
     protected $verifier;
@@ -81,14 +76,4 @@ abstract class Model extends SQLManipulator
         return $this->selectAll()->limit("{$items},{$perPage}")->getAll();   
     }
 
-    /**
-     * Create pagination on page
-     * 
-     * @param $items array
-     * @param $perPage int
-     */ 
-    public function pagination($items, $perPage)
-    {
-        return $this->paginator = new Paginator($items, $perPage);
-    }
 }
