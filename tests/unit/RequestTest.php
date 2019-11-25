@@ -217,4 +217,28 @@ class RequestTest extends TestCase
         $request = new \Gomail\Request\Request();
         return $this->assertIsArray($request->convertToArray('/', 'table/users/1'));
     }
+
+    /**
+     * Test that the checkPageAvailibility return array
+     * 
+     * @return bool
+     */
+    public function testCheckPageAvailibilityMethodReturnAnArray()
+    {
+        $request = new \Gomail\Request\Request();
+        $_SERVER['REQUEST_URI'] = 'box/page/1';
+        return $this->assertIsArray($request->checkPageAvalibility()); 
+    }
+
+    /**
+     * Test that the getPageNumber return integer property
+     * 
+     * @return bool
+     */ 
+    public function testGetPageNumberReturnIntegerProperty()
+    {
+        $request = new \Gomail\Request\Request();
+        $_SERVER['REQUEST_URI'] = 'box/page/1';
+        $this->assertIsInt((int) $request->getPageNumber());
+    }
 }
