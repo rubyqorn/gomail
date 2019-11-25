@@ -138,6 +138,19 @@ class SQLManipulator extends QueryBuilder
     }
 
     /**
+     * This is equivalent of LIMIT SQL statement
+     * 
+     * @param $condition string
+     * 
+     * @return \Gomail\Database\Query\SQLManipulator
+     */ 
+    protected function limit($condition)
+    {
+        $this->query[] = "LIMIT {$condition}";
+        return $this;
+    }
+
+    /**
      * Delete SQL query. Can be used when one first 
      * SQL conflict with second SQL
      * 

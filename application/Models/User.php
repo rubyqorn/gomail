@@ -15,7 +15,18 @@ class User extends Model
      * 
      * @var string
      */ 
-    protected $table = 'users';
+    protected $table = 'messages';
+
+    /**
+     * Get all records from table
+     * 
+     * @return array
+     */ 
+    public function getAllItems()
+    {
+        $this->unsetQuery();
+        return $this->selectAll()->getAll();
+    }
 
     /**
      * Check if user exists. If user with passed in email
