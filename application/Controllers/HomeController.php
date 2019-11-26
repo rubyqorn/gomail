@@ -4,7 +4,6 @@ namespace Application\Controllers;
 
 use Application\Models\Message;
 use Application\Models\User;
-use Application\Models\Test;
 
 class HomeController extends Controller
 {
@@ -34,10 +33,23 @@ class HomeController extends Controller
     public function index()
     {
         $this->checkIsUserAuth();
-        $messages = $this->message->getMessages();
-        $authUser = $this->user->getAuthUser();
+
+        if ($this->request->getCurrentUri() == '/') {
+            return $this->request->redirect('box/page/1');
+        }
+
+        return $this->request->redirect('login');
+    }
+
+    public function box()
+    {
+        $this->checkIsUserAuth();
+
         $title = 'Почта';
-        
-        $this->view->render('home', compact('title', 'messages', 'authUser'));
+        $messages = $this->message->getRecordsForPagination($this->request->getPageNumber(), 5);
+        $pagination = new Message();
+        $authUser = $this->user->getAuthUser();
+
+        return $this->view->render('home', compact('title', 'authUser', 'messages', 'pagination'));
     }
 }

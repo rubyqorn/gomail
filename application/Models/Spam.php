@@ -19,7 +19,7 @@ class Spam extends Model
      * 
      * @return array
      */ 
-    public function getSpamedMessages()
+    public function getAllItems()
     {
         return $this->selectAll()->getAll();
     }

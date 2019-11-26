@@ -19,7 +19,7 @@ class Check extends Model
      * 
      * @return array
      */ 
-    public function getCheckedMessages()
+    public function getAllItems()
     {
         return $this->selectAll()->getAll();
     }

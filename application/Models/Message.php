@@ -45,6 +45,7 @@ class Message extends Model
         return $this->selectAll()->where(" whom_sent = '{$this->user->getAuthUser()['id']}' ")->getAll();
     }
 
+
     /**
      * Get user id whom was sent a message
      * 
@@ -72,5 +73,15 @@ class Message extends Model
         return $this->insert('who_sent, whom_sent, title, content', '?,?,?,?', [
             $this->whoSendMessage['id'], $this->userId['id'], $messageContent['title'], $messageContent['message']
         ]);
+    }
+
+    /**
+     * Get all records
+     * 
+     * @return array
+     */ 
+    public function getAllItems()
+    {
+        return $this->selectAll()->getAll();
     }
 }

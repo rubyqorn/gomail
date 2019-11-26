@@ -15,11 +15,23 @@ class ParseParamsFromURL
      */ 
     public function parse(array $params)
     {
-        $file = $this->configFileHandler('./config/route_params.php');
-        
-        if (isset($params['2']) && in_array($params['2'], array_keys($file))) {
-            return $this->pushRegularExpression($file[$params['2']], $params);
+        if (count($params) == 3) {
+
+            if (!$this->configFileHandler('./config/route_params.php')) {
+                return false;
+            }
+
+            $routeParams = require './config/route_params.php';
+            $keys = array_keys($routeParams);
+
+            if (isset($params['2']) && in_array($params['2'], $keys)) {
+               return $this->pushRegularExpression($routeParams[$params['2']], $params);
+                
+            }
+
         }
+
+        unset($params);
 
     }
 

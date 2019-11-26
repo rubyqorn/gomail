@@ -15,7 +15,7 @@ class User extends Model
      * 
      * @var string
      */ 
-    protected $table = 'messages';
+    protected $table = 'users';
 
     /**
      * Get all records from table

@@ -6,6 +6,7 @@ use Gomail\Database\Query\SQLManipulator;
 use Gomail\Hasher\Password;
 use Gomail\Hasher\Verifier;
 use Gomail\Pagination\Pagination;
+use Application\Models\User;
 
 abstract class Model extends SQLManipulator
 {
@@ -72,8 +73,12 @@ abstract class Model extends SQLManipulator
     public function getRecordsForPagination($numberOfPage, $perPage)
     {
         $items = ($numberOfPage - 1) * $perPage;
+        $user = new User;
+        $userId = $user->getAuthUser()['id'];
+        
         $this->unsetQuery();
-        return $this->selectAll()->limit("{$items},{$perPage}")->getAll();   
+        return $this->selectAll()->where(" whom_sent = '{$userId}' ")
+                    ->limit("{$items},{$perPage}")->getAll();   
     }
 
 }

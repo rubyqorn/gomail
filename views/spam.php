@@ -60,12 +60,8 @@
     <?php endif; ?>
 
     <!-- Pagination -->
-    <div class="col-lg-12 p-2" id="pagination">
+    <div class="col-lg-12 p-2" id="spam-pagination">
         <ul class="pagination mt-4">
-            <li class="page-item"><a href="/" class="page-link"><small><</small></a></li>
-            <li class="page-item"><a href="/" class="page-link"><small>1</small></a></li>
-            <li class="page-item"><a href="/" class="page-link"><small>2</small></a></li>
-            <li class="page-item"><a href="/" class="page-link"><small>3</small></a></li>
-            <li class="page-item"><a href="/" class="page-link"><small>></small></a></li>
+            <?php echo $pagination; ?>
         </ul>
     </div>

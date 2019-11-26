@@ -162,21 +162,20 @@ class Route extends Request
             return $this->isUrlEqualMainPage($url, $controller);
         }
 
-        $currentUrl = substr($this->getCurrentUri(), 1);
-        $pattern = '#' . $this->paramsHandler($url) . '#';
-        $parsedController = $this->parseController->parse($controller);
-        $urlLikeArray = $this->convertToArray('/', $pattern);
-
-        if ($url == $currentUrl) {
-            return $this->routeWithoutParams($parsedController, $callback);
-        }
-
-        if(count($urlLikeArray) == 3) {  
-            if ($this->match($pattern, $currentUrl)) {
+        if ($this->match('#'. $this->paramsHandler($url) .'#', $this->getCurrentUri())) {
+            $currentUrl = substr($this->getCurrentUri(), 1);
+            $parsedController = $this->parseController->parse($controller);
+            $urlLikeArray = $this->convertToArray('/', $url);
+    
+            if ($url == $currentUrl) {
+                return $this->routeWithoutParams($parsedController, $callback);
+            }
+    
+            if(count($urlLikeArray) == 3) {  
                 return $this->routeWithParams($currentUrl, $parsedController, $callback);
             }
         }
-    
+        
     }
 
     /**
