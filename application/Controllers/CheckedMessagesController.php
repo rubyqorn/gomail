@@ -26,8 +26,9 @@ class CheckedMessagesController extends Controller
     public function show()
     {
         $title = 'Отмеченные';
-        $messages = $this->check->getCheckedMessages();
+        $messages = $this->check->getRecordsForPagination($this->request->getPageNumber(), 5);
+        $pagination = new Check();
 
-        return $this->view->render('check', compact('title', 'messages'));
+        return $this->view->render('check', compact('title', 'messages', 'pagination'));
     }
 }

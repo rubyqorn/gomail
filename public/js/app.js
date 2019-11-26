@@ -5,22 +5,6 @@ $(document).ready(function() {
         $('#write-message').removeClass('d-none').show('slow');
     });
 
-    $('#sidebar-menu .sidebar-link').click(function(event) {
-        event.preventDefault();
-
-        $('#sidebar-menu .sidebar-link').removeClass('active-link');
-        $(this).addClass('active-link');
-
-        const href = $(this).attr('href');
-
-        if (href == '/') {    
-            $('#messages').load(href + ' #messages');
-        } else {
-            $('#messages').load(href);
-        }
-        
-    })
-
     // Close button for chat section
     $('.close-button').click(function() {
         $('#write-message').toggle(500);
@@ -41,20 +25,57 @@ $(document).ready(function() {
         }
     });
 
-
     // Pagination for main page
-    $('#pagination .page-item').click(function(event) {
+    $('#box-pagination .page-item').click(function(event) {
         event.preventDefault();
 
         const link = $(this).find('.page-link');
-        const url = $(link).attr('href');
+        const url = '/box/page/' + $(link).attr('href');
 
         $('#messages').load(url + ' #messages');
 
-        $('#pagination .page-item').removeClass('active');
-        $(this).addClass('active');
+     });
+
+     // Checked page pagination
+     $('#check-pagination .page-item').click(function(event) {
+        event.preventDefault();
+
+        const pageLink = $(this).find('.page-link');
+        const href = '/check/page/' + $(pageLink).attr('href');
+
+        $('#messages').load(href + ' #messages');
+     });
+
+     // Important page pagination
+     $('#important-pagination .page-item').click(function(event) {
+        event.preventDefault();
+
+        const link = $(this).find('.page-link');
+        const url = '/important/page/' + $(link).attr('href');
+        
+        $('#messages').load(url + ' #messages');
 
      });
+
+     // Sent page pagination
+     $('#sent-pagination .page-item').click(function(event) {
+        event.preventDefault();
+
+        const pageLink = $(this).find('.page-link');
+        const href = '/sent/page/' + $(pageLink).attr('href');
+
+        $('#messages').load(href + ' #messages');
+     });
+
+     // Spam page pagination
+     $('#spam-pagination .page-item').click(function(event) {
+         event.preventDefault();
+
+         const pageLink = $(this).find('.page-link');
+         const href = '/spam/page/' + $(pageLink).attr('href');
+
+         $('#messages').load(href + ' #messages');
+     })
 
     // Edit button
     $('#user-settings #edit').click(function(event) {

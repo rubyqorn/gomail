@@ -1,4 +1,4 @@
-<?php require_once __DIR__ . '/parts/header.php'; ?>
+<?php require_once  __DIR__ . '/parts/header.php'; ?>
 
     <!-- Navigation panel -->
  <nav class="navbar navbar-expand-lg navbar-white bg-light  border-bottom" id="navigation-panel">
@@ -56,29 +56,29 @@
                         </a>
                     </li>
                 <li class="sidebar-item montserrat-font">
-                        <a href="/check" class="sidebar-link">
+                        <a href="/check/page/1" class="sidebar-link">
                             <i class="fas fa-check mt-1 mr-2 float-left"></i> Отмеченные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="/sent" class="sidebar-link">
+                        <a href="/sent/page/1" class="sidebar-link">
                         <i class="far fa-paper-plane mt-1 mr-2 float-left"></i> Отправленные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="/important" class="sidebar-link">
+                        <a href="/important/page/1" class="sidebar-link">
                         <i class="far fa-star mt-1 mr-2 float-left"></i> Важные
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="/spam" class="sidebar-link">
+                        <a href="/spam/page/1" class="sidebar-link">
                             <i class="fas fa-exclamation-circle mt-1 mr-2 float-left"></i> Спам
                         </a>
                     </li>
             </ul>
 
             <div class="col-lg-12 d-flex border-bottom pb-3" id="user-settings">
-                <img src="./public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
+                <img src="/public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
                 <a role="button" class="dropdown-toggle ml-3 text-black-50 montserrat-font" data-toggle="dropdown">
                     <small>
                         <?php echo $authUser['name']; ?>
@@ -215,13 +215,9 @@
                     <?php endif;?>
 
                     <!-- Pagination -->
-                    <div class="col-lg-12 p-2" id="pagination">
+                    <div class="col-lg-12 p-2" id="box-pagination">
                         <ul class="pagination mt-4">
-                            <li class="page-item"><a href="/" class="page-link"><small><</small></a></li>
-                            <li class="page-item active"><a href="/index.php?page=1" class="page-link"><small>1</small></a></li>
-                            <li class="page-item"><a href="/index.php?page=2" class="page-link"><small>2</small></a></li>
-                            <li class="page-item"><a href="/index.php?page=3" class="page-link"><small>3</small></a></li>
-                            <li class="page-item"><a href="/" class="page-link"><small>></small></a></li>
+                            <?php echo $pagination; ?>
                         </ul>
                     </div>
 

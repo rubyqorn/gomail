@@ -19,7 +19,7 @@ class Important extends Model
      * 
      * @return array
      */ 
-    public function getImportantMessages()
+    public function getAllItems()
     {
         return $this->selectAll()->getAll();
     }

@@ -11,7 +11,7 @@
     <!-- Google Fonts -->
     <link text-black-50 href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <!-- Custom CSS -->
-    <link text-black-50 rel="stylesheet" href="./public/css/app.css">
+    <link text-black-50 rel="stylesheet" href="/public/css/app.css">
     <title><?php echo $title; ?></title>
 </head>
 <body>

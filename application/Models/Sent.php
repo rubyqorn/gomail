@@ -19,7 +19,7 @@ class Sent extends Model
      * 
      * @return array
      */ 
-    public function getSentMessages()
+    public function getAllItems()
     {
         return $this->selectAll()->getAll();
     }
