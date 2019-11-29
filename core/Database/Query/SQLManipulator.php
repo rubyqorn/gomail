@@ -94,6 +94,19 @@ class SQLManipulator extends QueryBuilder
     }
 
     /**
+     * This is equivalent of LIKE in SQL statements
+     * 
+     * @param $condition string
+     * 
+     * @return \Gomail\Database\Query\SQLManipulator 
+     */ 
+    protected function like($condition)
+    {
+        $this->query[] = "LIKE {$condition}";
+        return $this;
+    }
+
+    /**
      * It is equivalent of AND in SQL statements
      * 
      * @param $row string
