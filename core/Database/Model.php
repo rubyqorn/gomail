@@ -6,6 +6,7 @@ use Gomail\Database\Query\SQLManipulator;
 use Gomail\Hasher\Password;
 use Gomail\Hasher\Verifier;
 use Gomail\Pagination\Pagination;
+use Gomail\Searching\Search;
 
 abstract class Model extends SQLManipulator
 {
@@ -25,6 +26,11 @@ abstract class Model extends SQLManipulator
     protected $paginator;
 
     /**
+     * @var \Gomail\Searching\Search
+     */ 
+    protected $search;
+
+    /**
      * Get all records from table
      * 
      * @return array
@@ -38,6 +44,7 @@ abstract class Model extends SQLManipulator
         $this->hasher = new Password();
         $this->verifier = new Verifier();
         $this->paginator = new Pagination();
+        $this->search = new Search();
     }
 
     /**
