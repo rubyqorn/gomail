@@ -7,7 +7,7 @@ use Gomail\Hasher\Password;
 use Gomail\Hasher\Verifier;
 use Gomail\Pagination\Pagination;
 use Gomail\Searching\Search;
-
+use Application\Models\User;
 
 abstract class Model extends SQLManipulator
 {

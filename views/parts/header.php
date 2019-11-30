@@ -16,4 +16,38 @@
 </head>
 <body>
 
- 
+    <!-- Navigation panel -->
+    <nav class="navbar navbar-expand-lg navbar-white bg-light  border-bottom" id="navigation-panel">
+
+        <!-- Logo -->
+        <a href="/" class="h3 montserrat-font text-uppercase">
+            <small>
+                GOMAIL
+            </small>
+        </a>
+
+        <!-- Searching -->
+        <div class="col-lg-10 d-flex justify-content-center" id="searching">
+            <form action="/" class="w-50">
+                <div class="form-group mt-1 d-flex">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search fa-lg"></i>
+                    </button>
+                    <input type="search" class="form-control montserrat-font border-bottom" id="search" name="search" placeholder="Поиск по записям">
+                </div>
+            </form>
+        </div>
+
+        <!-- Main navbar-content -->
+        <div class="col-lg-1 col-md-1 col-2 d-flex justify-content-right" id="navbar-content">
+            <a href="/logout" class="btn btn-outline-primary btn-sm text-uppercase ml-2">
+                <small>
+                    Logout
+                </small>    
+            </a>
+        </div>
+
+    </nav>
+
+    <!-- Error and success messages -->
+    <?php require_once __DIR__ . '/alerts.php' ?>

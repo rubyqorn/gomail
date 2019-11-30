@@ -4,6 +4,7 @@ namespace Application\Controllers;
 
 use Gomail\Request\Request;
 use Gomail\View\View;
+use Application\Models\User;
 
 class Controller 
 {
@@ -17,10 +18,16 @@ class Controller
      */ 
     protected $view;
 
+    /**
+     * @var \Application\Models\User
+     */ 
+    protected $user;
+
     public function __construct()
     {
         $this->request = new Request();
         $this->view = new View();
+        $this->user = new User();
     }
 
     /**

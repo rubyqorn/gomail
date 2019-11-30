@@ -26,9 +26,10 @@ class SpamedMessagesController extends Controller
     public function show()
     {
         $title = 'Спам';
+        $authUser = $this->user->getAuthUser();
         $messages = $this->spam->getRecordsForPagination($this->request->getPageNumber(), 5);
         $pagination = new Spam();
         
-        return $this->view->render('spam', compact('title', 'messages', 'pagination'));
+        return $this->view->render('spam', compact('title', 'messages', 'pagination', 'authUser'));
     }
 }
