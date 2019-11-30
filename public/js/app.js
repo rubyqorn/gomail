@@ -25,16 +25,14 @@ $(document).ready(function() {
         }
     });
 
-    // Pagination for main page
-    $('#box-pagination .page-item').click(function(event) {
+    // Pagination for main page 
+    $('#box-pagination .page-link').click(function(event) {
         event.preventDefault();
 
-        const link = $(this).find('.page-link');
-        const url = '/box/page/' + $(link).attr('href');
+        const link = $(event.target).attr('href');
 
-        $('#messages').load(url + ' #messages');
-
-     });
+        $('#messages').load(link + ' #messages');
+    });
 
      // Checked page pagination
      $('#check-pagination .page-item').click(function(event) {

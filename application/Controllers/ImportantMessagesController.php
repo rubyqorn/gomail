@@ -26,9 +26,10 @@ class ImportantMessagesController extends Controller
     public function show()
     {
         $title = 'Важные';
+        $authUser = $this->user->getAuthUser();
         $messages = $this->important->getRecordsForPagination($this->request->getPageNumber(), 5);
         $pagination = new Important();
 
-        return $this->view->render('important', compact('title', 'messages', 'pagination'));
+        return $this->view->render('important', compact('title', 'messages', 'pagination', 'authUser'));
     }
 }

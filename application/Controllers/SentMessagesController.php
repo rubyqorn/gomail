@@ -26,9 +26,10 @@ class SentMessagesController extends Controller
     public function show()
     {
         $title = 'Отправленные';
+        $authUser = $this->user->getAuthUser();
         $messages = $this->sent->getRecordsForPagination($this->request->getPageNumber(), 5);
         $pagination = new Sent();
 
-        return $this->view->render('sent', compact('title', 'messages', 'pagination'));
+        return $this->view->render('sent', compact('title', 'messages', 'pagination', 'authUser'));
     }
 }

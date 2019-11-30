@@ -1,38 +1,5 @@
 <?php require_once  __DIR__ . '/parts/header.php'; ?>
 
-    <!-- Navigation panel -->
- <nav class="navbar navbar-expand-lg navbar-white bg-light  border-bottom" id="navigation-panel">
-
-    <!-- Logo -->
-    <a href="/" class="h3 montserrat-font text-uppercase">
-        <small>
-            GOMAIL
-        </small>
-    </a>
-
-    <!-- Searching -->
-    <div class="col-lg-10 d-flex justify-content-center" id="searching">
-        <form action="/" class="w-50">
-            <div class="form-group mt-1 d-flex">
-                <button type="submit" class="search-button">
-                    <i class="fas fa-search fa-lg"></i>
-                </button>
-                <input type="search" class="form-control montserrat-font border-bottom" id="search" name="search" placeholder="Поиск по записям">
-            </div>
-        </form>
-    </div>
-
-    <!-- Main navbar-content -->
-    <div class="col-lg-1 col-md-1 col-2 d-flex justify-content-right" id="navbar-content">
-        <a href="/logout" class="btn btn-outline-primary btn-sm text-uppercase ml-2">
-            <small>
-                Logout
-            </small>    
-        </a>
-    </div>
-
-</nav>
-
 <!-- Main content -->
 <section class="mt-4" id="content">
     <div class="container-fluid">
@@ -56,7 +23,7 @@
                         </a>
                     </li>
                 <li class="sidebar-item montserrat-font">
-                        <a href="/check/page/1" class="sidebar-link">
+                        <a href="/checked/page/1" class="sidebar-link">
                             <i class="fas fa-check mt-1 mr-2 float-left"></i> Отмеченные
                         </a>
                     </li>
@@ -87,7 +54,7 @@
                 <div class="dropdown-menu">
                     
                         <div class="col-lg-12">
-                            <img src="./public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
+                            <img src="/public/img/<?php echo $authUser['image']; ?>" alt="<?php echo $authUser['name']; ?>">
                         </div>
                         <div class="col-lg-12">
                             <p class="text-black-50 montserrat-font">
@@ -228,75 +195,7 @@
     </div>
 </section>
 
-    <?php if(isset($_SESSION['success'])): ?>
-        <!-- Success message -->
-        <div class="col-lg-3 col-md-3 col-4" id="success-message">
-            <div class="alert alert-success fade show alert-dismissible">
-                <strong class="text-dark">
-                    <?php echo $_SESSION['success']; ?>
-                </strong>
-                <button class="close" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-            </div> 
-        </div>
-    <?php elseif(isset($_SESSION['error'])): ?>
-        <!-- Error message -->
-        <div class="col-lg-3 col-md-3 col-3" id="error-message">
-            <div class="alert alert-danger alert-dismissible fade show">
-                <strong>
-                    <?php echo $_SESSION['error']; ?>
-                </strong>
-                <button class="close" data-dismiss="alert">
-                    <span>&times;</span>
-                </button>
-            </div>
-        </div>
-    <?php endif; ?>
-
-<!-- Write new message -->
-<div class="chat-content col-lg-5 col-md-5 col-8 p-0 d-none" id="write-message">
-    <div class="chat-header w-100 border-bottom d-flex">
-
-    <!-- Title -->
-    <div class="col-lg-6">
-        <h6 class="text-left text-white montserrat-font">
-            <small>
-                Новое сообщение
-            </small>
-        </h6>
-    </div>
-
-    <!-- Close button for chat -->
-    <div class="col-lg-6 text-right">
-        <button class="close-button">
-            <span class="text-white">&times;</span>
-        </button>
-    </div>
-
-</div>
-    <div class="chat-body bg-white">
-        <!-- Main form -->
-        <form action="/send" method="post">
-            <div class="form-group">
-                <input type="email" name="email" class="form-control border-bottom montserrat-font" id="email" placeholder="Кому"  required>
-            </div>
-            <div class="form-group">
-                <input type="text" name="title" class="form-control border-bottom montserrat-font" id="title" placeholder="Заголовок"  required>
-            </div>
-            <div class="form-group">
-                <textarea name="message" class="form-control" id="message-content" cols="30" rows="10" required></textarea>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-outline-primary text-uppercase btn-sm" id="send-message">
-                    <small>
-                        Отправить
-                    </small>
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
-
+<!-- Message window where we can write a message another user -->
+<?php require_once  __DIR__ . '/parts/message-window.php'; ?>
 
 <?php require_once __DIR__ . '/parts/footer.php'; ?>

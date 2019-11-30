@@ -62,7 +62,7 @@ body {
     height: 10%;
 }
 
-#content #sidebar-menu  {
+#sidebar-menu  {
     list-style-type: none;
     overflow: scroll;
     overflow-x: hidden;
@@ -71,19 +71,19 @@ body {
     margin-top: 50px;
 }
 
-#content #sidebar-menu .sidebar-item {
+#sidebar-menu .sidebar-item {
     padding: 2%;
 }
 
-#content #sidebar-menu .sidebar-link {
+#sidebar-menu .sidebar-link {
     color: #808080 !important;
 }
 
-#content #sidebar #user-settings img {
+#sidebar #user-settings img {
     width: 8%;
 }
 
-#content #messages {
+#messages {
     padding: 0;
 }
 

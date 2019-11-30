@@ -12,17 +12,11 @@ class HomeController extends Controller
      */ 
     protected $message;
 
-    /**
-     * @var \Application\Models\User
-     */ 
-    protected $user;
-
     public function __construct()
     {
         parent::__construct();
 
         $this->message = new Message();
-        $this->user = new User();
     }
 
     /**
