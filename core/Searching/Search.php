@@ -22,7 +22,7 @@ class Search extends SQLManipulator
      * @var array
      */ 
     protected $tableNames = [
-        'checked', 'spamed', 'sent', 'important'
+        'messages', 'checked', 'spamed', 'sent', 'important'
     ];
 
     /**
@@ -75,15 +75,18 @@ class Search extends SQLManipulator
      * 
      * @return array 
      */ 
-    public function search(Request $request)
+    public function search(Request $request, $userId)
     {
         $this->content = $this->checkRequest($request);
 
         if (!$this->validator->fieldsValidation($this->content)) {
             return $request->session('error', 'Не валидные данные');
         }
+
         if ($this->setTableName($request)) {
-            return $this->selectAll()->where('title')->like(" '%{$this->content['search']}%' ")->getAll();
+            return $this->selectAll()->where('title')
+                        ->like(" '%{$this->content['search']}%' ")
+                        ->and('whom_sent = ', " {$userId} ")->getAll();
         }
     }
 }

@@ -94,24 +94,6 @@ $(document).ready(function() {
 
     });
 
-    // Searching
-    $('#searching .search-button').click(function(event) {
-        event.preventDefault();
-
-        $.ajax({
-            url: './views/auth/parts/ajax.php',
-            type: 'POST',
-            data: {
-                title: $('#searching #search').val(),
-            },
-            beforeSend: function() {
-                $('#main-content').wrap('<div class="overlay"></div>');
-            }
-        }).done(function(data) {
-            $('#main-content').unwrap();
-        })
-    })
-
     $('#user-settings #save').click(function(event) {
         event.preventDefault();
 

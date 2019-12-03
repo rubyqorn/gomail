@@ -28,7 +28,7 @@
 
         <!-- Searching -->
         <div class="col-lg-10 d-flex justify-content-center" id="searching">
-            <form action="/" class="w-50">
+            <form action="<?php echo \Gomail\Request\Request::setSearchLink(); ?>" class="w-50" method="post">
                 <div class="form-group mt-1 d-flex">
                     <button type="submit" class="search-button">
                         <i class="fas fa-search fa-lg"></i>

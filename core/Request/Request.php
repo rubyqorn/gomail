@@ -217,6 +217,19 @@ class Request
     }
 
     /**
+     * Set search link for correct searching
+     * 
+     * @return string
+     */ 
+    public static function setSearchLink()
+    {
+        $request = new self();
+        $currentUri = $request->getCurrentUri();
+        $currentUri = substr($currentUri, 0, -7);
+        return $currentUri . '/search';
+    }
+
+    /**
      * Convert string to array
      * 
      * @param $params string

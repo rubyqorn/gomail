@@ -32,4 +32,22 @@ class ImportantMessagesController extends Controller
 
         return $this->view->render('important', compact('title', 'messages', 'pagination', 'authUser'));
     }
+
+    /**
+     * Search messages which checked like
+     * important
+     * 
+     * @return \Gomail\View\View
+     */ 
+    public function search()
+    {
+        if ($this->request->checkHttpMethod('POST')) {
+            $title = 'Поиск по важным сообщениям';
+            $searchContent = $this->important->searchContent($this->request);
+
+            return $this->view->render('search-content', compact('title', 'searchContent'));
+        }
+
+        return $this->request->redirect('/important/page/1');
+    }
 }

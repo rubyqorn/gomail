@@ -32,4 +32,21 @@ class SpamedMessagesController extends Controller
         
         return $this->view->render('spam', compact('title', 'messages', 'pagination', 'authUser'));
     }
+
+    /**
+     * Search spamed messages
+     * 
+     * @return \Gomail\View\View
+     */ 
+    public function search()
+    {
+        if (!$this->request->checkHttpMethod('POST')) {
+            return $this->request->redirect('/spam/page/1');
+        }
+
+        $title = 'Поиск по заблокированным сообщениям';
+        $searchContent = $this->spam->searchContent($this->request);
+
+        return $this->view->render('search-content', compact('searchContent', 'title'));
+    }
 }
