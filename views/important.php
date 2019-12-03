@@ -162,7 +162,7 @@
                                 </form>
                                 <p class="text-secondary montserrat-font">
                                     <small>
-                                        <?php echo date('M d', strtotime($message['important_at'])) ?>
+                                        <?php echo date('M d', strtotime($message['created_at'])) ?>
                                     </small>
                                 </p>
                                 

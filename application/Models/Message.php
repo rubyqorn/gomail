@@ -3,6 +3,7 @@
 namespace Application\Models;
 
 use Gomail\Database\Model;
+use Gomail\Request\Request;
 
 class Message extends Model
 {
@@ -83,5 +84,18 @@ class Message extends Model
     public function getAllItems()
     {
         return $this->selectAll()->getAll();
+    }
+
+    /**
+     * Search records into table by user pased character
+     * 
+     * @param \Gomail\Request\Request $request
+     * 
+     * @return array
+     */ 
+    public function searchMessages(Request $request)
+    {
+        $id = $this->user->getAuthUser()['id'];
+        return $this->search->search($request, $id);
     }
 }

@@ -32,4 +32,21 @@ class SentMessagesController extends Controller
 
         return $this->view->render('sent', compact('title', 'messages', 'pagination', 'authUser'));
     }
+
+    /**
+     * Search sent messages
+     * 
+     * @return \Gomail\View\View
+     */ 
+    public function search()
+    {
+        if (!$this->request->checkHttpMethod('POST')) {
+            return $this->request->redirect('/sent/page/1');
+        }
+
+        $title = 'Поиск по отправленным сообщениям';
+        $searchContent = $this->sent->searchContent($this->request);
+
+        return $this->view->render('search-content', compact('title', 'searchContent'));
+    }
 }

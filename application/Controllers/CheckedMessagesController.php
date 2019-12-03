@@ -32,4 +32,21 @@ class CheckedMessagesController extends Controller
 
         return $this->view->render('check', compact('title', 'messages', 'pagination', 'authUser'));
     }
+
+    /**
+     * Search checked messages
+     * 
+     * @return \Gomail\View\View
+     */ 
+    public function search()
+    {
+        if (!$this->request->checkHttpMethod('POST')) {
+            return $this->request->redirect('/checked/page/1');
+        }
+
+        $title = 'Поиск по отмеченным сообщениям';
+        $searchContent = $this->check->searchContent($this->request);
+
+        return $this->view->render('search-content', compact('searchContent', 'title'));
+    }
 }

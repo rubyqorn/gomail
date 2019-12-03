@@ -3,6 +3,8 @@
 namespace Application\Models;
 
 use Gomail\Database\Model;
+use Gomail\Request\Request;
+use Application\Models\User;
 
 class Spam extends Model 
 {
@@ -15,6 +17,18 @@ class Spam extends Model
     protected $table = 'spamed';
 
     /**
+     * @var \Application\Models\User
+     */ 
+    protected $user;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->user = new User();
+    }
+
+    /**
      * Get all records from spam table
      * 
      * @return array
@@ -22,5 +36,19 @@ class Spam extends Model
     public function getAllItems()
     {
         return $this->selectAll()->getAll();
+    }
+
+    /**
+     * Search messages which was checked like
+     * spam
+     * 
+     * @param \Gomail\Request\Request $request
+     * 
+     * @return array 
+     */ 
+    public function searchContent(Request $request)
+    {
+        $userId = $this->user->getAuthUser()['id'];
+        return $this->search->search($request, $userId);
     }
 }

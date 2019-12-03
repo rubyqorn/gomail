@@ -3,6 +3,8 @@
 namespace Application\Models;
 
 use Gomail\Database\Model;
+use Gomail\Request\Request;
+use Application\Models\User;
 
 class Check extends Model 
 {
@@ -15,6 +17,18 @@ class Check extends Model
     protected $table = 'checked';
 
     /**
+     * @var \Application\Models\User
+     */ 
+    protected $user;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->user = new User();
+    }
+
+    /**
      * Get all messages from table named checked
      * 
      * @return array
@@ -22,5 +36,18 @@ class Check extends Model
     public function getAllItems()
     {
         return $this->selectAll()->getAll();
+    }
+
+    /**
+     * Get checked records from 'checked' table
+     * 
+     * @param \Gomail\Request\Request $request
+     * 
+     * @return array
+     */ 
+    public function searchContent(Request $request)
+    {
+        $userId = $this->user->getAuthUser()['id'];
+        return $this->search->search($request, $userId);
     }
 }

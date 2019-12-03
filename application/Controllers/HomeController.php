@@ -20,21 +20,26 @@ class HomeController extends Controller
     }
 
     /**
-     * Show home page 
+     * Redirect to the home page
      * 
-     * @return bool
+     * @return \Gomail\Request\Request
      */ 
     public function index()
     {
         $this->checkIsUserAuth();
 
         if ($this->request->getCurrentUri() == '/') {
-            return $this->request->redirect('box/page/1');
+            return $this->request->redirect('messages/page/1');
         }
 
         return $this->request->redirect('login');
     }
 
+    /**
+     * Show home page
+     * 
+     * @return \Gomail\View\View
+     * */ 
     public function box()
     {
         $this->checkIsUserAuth();
@@ -45,5 +50,22 @@ class HomeController extends Controller
         $authUser = $this->user->getAuthUser();
 
         return $this->view->render('home', compact('title', 'authUser', 'messages', 'pagination'));
+    }
+
+    /**
+     * Search messages 
+     * 
+     * @return \Gomail\View\View
+     * */ 
+    public function search()
+    {
+        if ($this->request->checkHttpMethod('POST')) {
+            $title = 'Поиск по сообщениям';
+            $searchContent = $this->message->searchMessages($this->request);
+
+            return $this->view->render('search-content', compact('searchContent', 'title'));
+        }   
+        
+        return $this->request->redirect('/messages/page/1');
     }
 }

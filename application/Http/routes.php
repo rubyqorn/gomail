@@ -10,16 +10,21 @@
  */ 
 
 $route->getMethod('/', 'HomeController@index');
-$route->getMethod('box/page/{page}', 'HomeController@box');
+$route->getMethod('messages/page/{page}', 'HomeController@box');
 $route->getMethod('login', 'Auth\LoginController@show');
 $route->postMethod('auth', 'Auth\LoginController@login');
 $route->getMethod('registration', 'Auth\RegistrationController@show');
 $route->postMethod('register', 'Auth\RegistrationController@registration');
 $route->postMethod('logout', 'Auth\LogoutController@logout');
 $route->postMethod('send', 'SendMessageController@send');
-$route->getMethod('check/page/{page}', 'CheckedMessagesController@show');
+$route->getMethod('checked/page/{page}', 'CheckedMessagesController@show');
 $route->getMethod('important/page/{page}', 'ImportantMessagesController@show');
 $route->getMethod('sent/page/{page}', 'SentMessagesController@show');
 $route->getMethod('spam/page/{page}', 'SpamedMessagesController@show');
 $route->getMethod('settings', 'SettingsController@show');
 $route->postMethod('settings/edit', 'SettingsController@update');
+$route->postMethod('messages/search', 'HomeController@search');
+$route->postMethod('checked/search', 'CheckedMessagesController@search');
+$route->postMethod('important/search', 'ImportantMessagesController@search');
+$route->postMethod('sent/search', 'SentMessagesController@search');
+$route->postMethod('spam/search', 'SpamedMessagesController@search');
