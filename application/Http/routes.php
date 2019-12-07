@@ -28,3 +28,4 @@ $route->postMethod('checked/search', 'CheckedMessagesController@search');
 $route->postMethod('important/search', 'ImportantMessagesController@search');
 $route->postMethod('sent/search', 'SentMessagesController@search');
 $route->postMethod('spam/search', 'SpamedMessagesController@search');
+$route->postMethod('messages/replace', 'HomeController@replaceToTrash');

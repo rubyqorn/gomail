@@ -80,6 +80,16 @@ class Request
     }
 
     /**
+     * Get previous URI name
+     * 
+     * @return string
+    */
+    public function getPreviousUri()
+    {
+        return substr($_SERVER['HTTP_REFERER'], 18);
+    }
+
+    /**
      * Set URI
      *  
      * @param $uri string
