@@ -1,29 +1,29 @@
 $(document).ready(function() {
 
     // Delete messages
-    $('#trash').click(function(event) {
-        event.preventDefault();
+    // $('#trash').click(function(event) {
+    //     event.preventDefault();
         
-        $('.checkbox-item:checked').fadeOut('slow', function() {
-            const col = this.parentNode;
-            const container = col.parentNode;
+    //     $('.checkbox-item:checked').fadeOut('slow', function() {
+    //         const col = this.parentNode;
+    //         const container = col.parentNode;
 
-            $.ajax({
-                url: './views/auth/parts/ajax.php',
-                type: 'POST',
-                data: {
-                    id: $(this).val()
-                },
-            }).done(function(data) {
-                $('#success-message').removeClass('d-none');
-            }).fail(function() {
-                $('#error-message').removeClass('d-none');
-            })
+    //         $.ajax({
+    //             url: './views/auth/parts/ajax.php',
+    //             type: 'POST',
+    //             data: {
+    //                 id: $(this).val()
+    //             },
+    //         }).done(function(data) {
+    //             $('#success-message').removeClass('d-none');
+    //         }).fail(function() {
+    //             $('#error-message').removeClass('d-none');
+    //         })
 
-            $(container).remove();
-        })
+    //         $(container).remove();
+    //     })
 
-    });
+    // });
 
     // Replace items into spam section
     $('#spam').click(function(event) {
@@ -75,24 +75,6 @@ $(document).ready(function() {
         })
     })
 
-    $('#tools .select-all').click(function(event) {
-        
-        if ($('#main-content #trash')) {
-            $('#main-content #trash').click(function() {
-                $('.checkbox-item:checked').fadeOut('slow', function() {
-                    $('#messages #message').remove();
-                })
-            });
-
-        } else if($('#main-content #spam')) {
-            $('#main-content #spam').click(function() {
-                $('.checkbox-item:checked').fadeOut('slow', function() {
-                    $('#messages #message').remove();
-                })
-            });
-        }
-
-    });
 
     $('#user-settings #save').click(function(event) {
         event.preventDefault();

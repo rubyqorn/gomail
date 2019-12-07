@@ -68,4 +68,28 @@ class HomeController extends Controller
         
         return $this->request->redirect('/messages/page/1');
     }
+
+    /**
+     * Get all records and call the method of 
+     * controller which delete records. And finally 
+     * redirect to the home page with success message
+     * 
+     * @return \Gomail\Request\Session
+     */ 
+    public function replaceToTrash()
+    {
+        if (!$this->request->checkHttpMethod('POST')) {
+            return $this->redirect('/messages/page/1');
+        }
+
+        $multipleDeletion = MultipleTransferInTrashController::access($this->request->getPreviousUri(), $this->message);
+        
+        if ($multipleDeletion == null) {
+            $this->request->session('success', 'Все записи успешно удалены');
+            return $this->request->redirect('/messages/page/1');
+        }
+
+        $this->request->session('error', 'Проблема с удалением записей');
+        return $this->request->redirect('/messages/page/1');
+    }
 }
