@@ -11,6 +11,13 @@ class SentMessagesController extends Controller
      */ 
     protected $sent;
 
+    /**
+     * Contains a URI with first page
+     * 
+     * @var string
+     */ 
+    protected $uriName = '/sent/page/1';
+
     public function __construct()
     {
         parent::__construct();
@@ -41,12 +48,41 @@ class SentMessagesController extends Controller
     public function search()
     {
         if (!$this->request->checkHttpMethod('POST')) {
-            return $this->request->redirect('/sent/page/1');
+            return $this->request->redirect($this->uriName);
         }
 
         $title = 'Поиск по отправленным сообщениям';
         $searchContent = $this->sent->searchContent($this->request);
 
         return $this->view->render('search-content', compact('title', 'searchContent'));
+    }
+
+    /**
+     * Replace all sent messages into trash.
+     * It means that we delete all sent message.
+     * Create a session with error or success message 
+     * and finnaly redirect at first page
+     * 
+     * @return \Gomail\Session\Session
+     */ 
+    public function replaceIntoTrash()
+    {
+        if ($this->request->checkHttpMethod('POST')) {
+            $multipleDeletion = MultipleTransferInTrashController::access(
+                $this->request->getPreviousUri(),
+                $this->sent
+            );
+
+            if ($multipleDeletion == null) {
+                $this->request->session('success', 'Все отправленные сообщения были удалены');
+                return $this->request->redirect($this->uriName);
+            }
+
+            $this->request->session('error', 'Проблемы с удалением записей');
+            return $this->request->redirect($this->uriName);
+
+        }
+
+        return $this->request->redirect($this->uriName);
     }
 }

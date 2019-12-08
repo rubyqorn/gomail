@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="/spam/page/1" class="sidebar-link">
+                        <a href="/spamed/page/1" class="sidebar-link">
                             <i class="fas fa-exclamation-circle mt-1 mr-2 float-left"></i> Спам
                         </a>
                     </li>

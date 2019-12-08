@@ -12,6 +12,14 @@ class HomeController extends Controller
      */ 
     protected $message;
 
+    /**
+     * Contains a URI name which will
+     * be using for redirecting
+     * 
+     * @var string
+     */ 
+    protected $uriName = '/messages/page/1';
+
     public function __construct()
     {
         parent::__construct();
@@ -29,7 +37,7 @@ class HomeController extends Controller
         $this->checkIsUserAuth();
 
         if ($this->request->getCurrentUri() == '/') {
-            return $this->request->redirect('messages/page/1');
+            return $this->request->redirect($this->uriName);
         }
 
         return $this->request->redirect('login');
@@ -66,7 +74,7 @@ class HomeController extends Controller
             return $this->view->render('search-content', compact('searchContent', 'title'));
         }   
         
-        return $this->request->redirect('/messages/page/1');
+        return $this->request->redirect($this->uriName);
     }
 
     /**
@@ -79,17 +87,17 @@ class HomeController extends Controller
     public function replaceToTrash()
     {
         if (!$this->request->checkHttpMethod('POST')) {
-            return $this->redirect('/messages/page/1');
+            return $this->redirect($this->uriName);
         }
 
         $multipleDeletion = MultipleTransferInTrashController::access($this->request->getPreviousUri(), $this->message);
         
         if ($multipleDeletion == null) {
             $this->request->session('success', 'Все записи успешно удалены');
-            return $this->request->redirect('/messages/page/1');
+            return $this->request->redirect($this->uriName);
         }
 
         $this->request->session('error', 'Проблема с удалением записей');
-        return $this->request->redirect('/messages/page/1');
+        return $this->request->redirect($this->uriName);
     }
 }

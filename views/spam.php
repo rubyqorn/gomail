@@ -81,7 +81,7 @@
 
                 <div class="col-lg-12 d-flex border-bottom" id="tools">
                         <div class="col-lg-3">
-                        <form action="test.php" class="d-flex" method="post">
+                        <form action="/spamed/replace" class="d-flex" method="post">
                             <!-- Select all button -->
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox">
@@ -92,6 +92,12 @@
                                         </small>
                                     </label>
                                 </div>
+                            </div>
+                            <!-- Block with all ID's which will be using for multiple deletion -->
+                            <div id="messages" class="d-none">
+                                <?php foreach($messages as $message): ?>
+                                    <input type="checkbox" name="checkbox<?php echo $message['message_id'] ?>" class="checkbox" value="<?php echo $message['message_id']; ?>">
+                                <?php endforeach; ?>
                             </div>
                             <!-- Refresh button -->
                             <div class="form-group">
@@ -111,7 +117,6 @@
                                 <button type="submit" class="trash-button" name="trash" id="trash">
                                     <i class="fas fa-trash text-secondary"></i>
                                 </button>
-                                <input type="hidden" name="id" value="1">
                             </div>
                         </div>
                     </form>
