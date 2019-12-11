@@ -71,14 +71,17 @@ class CheckedMessagesController extends Controller
             return $this->request->redirect($this->uriName);
         }
 
-        $multipleDeletion = MultipleTransferInTrashController::access($this->request->getPreviousUri(), $this->check);
+        $this->multipleDeletion = $this->accessMultipleReplacing(
+            $this->request->post(),
+            $this->check
+        );
 
-        if ($multipleDeletion == null) {
-            $this->request->session('success', 'Все отмеченные сообщения удалены');
+        if ($this->multipleDeletion == null) {
+            $this->request->session('success', 'Все отмеченные сообщения перемещены');
             return $this->request->redirect($this->uriName);
         }
 
-        $this->request->session('error', 'Проблема с удалением отмеченных сообщений');
+        $this->request->session('error', 'Проблема с перемещением отмеченных сообщений');
         return $this->request->redirect($this->uriName);
 
 

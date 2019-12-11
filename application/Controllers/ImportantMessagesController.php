@@ -72,16 +72,17 @@ class ImportantMessagesController extends Controller
             return $this->request->redirect($this->uriName);
         }
 
-        $multipleDeletion = MultipleTransferInTrashController::access(
-            $this->request->getPreviousUri(), $this->important
+        $this->multipleDeletion = $this->accessMultipleReplacing(
+            $this->request->post(),
+            $this->important
         );
 
-        if ($multipleDeletion == null) {
-            $this->request->session('success', 'Все важные сообщения удалены');
+        if ($this->multipleDeletion == null) {
+            $this->request->session('success', 'Все важные сообщения перемещены');
             return $this->request->redirect($this->uriName);
         }
 
-        $this->request->session('error', 'Возникла проблема с удалением важных сообещний');
+        $this->request->session('error', 'Возникла проблема с перемещением важных сообещний');
         return $this->request->redirect($this->uriName);
     }
 }
