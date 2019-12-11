@@ -87,17 +87,17 @@ class HomeController extends Controller
     public function replaceToTrash()
     {
         if (!$this->request->checkHttpMethod('POST')) {
-            return $this->redirect($this->uriName);
-        }
-
-        $multipleDeletion = MultipleTransferInTrashController::access($this->request->getPreviousUri(), $this->message);
-        
-        if ($multipleDeletion == null) {
-            $this->request->session('success', 'Все записи успешно удалены');
             return $this->request->redirect($this->uriName);
         }
 
-        $this->request->session('error', 'Проблема с удалением записей');
+        $this->multipleDeletion = $this->accessMultipleReplacing($this->request->post(), $this->message);
+        
+        if ($this->multipleDeletion == null) {
+            $this->request->session('success', 'Все записи успешно перемещены');
+            return $this->request->redirect($this->uriName);
+        }
+
+        $this->request->session('error', 'Проблема с перемещением');
         return $this->request->redirect($this->uriName);
     }
 }

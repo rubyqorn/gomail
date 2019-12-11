@@ -68,17 +68,17 @@ class SentMessagesController extends Controller
     public function replaceIntoTrash()
     {
         if ($this->request->checkHttpMethod('POST')) {
-            $multipleDeletion = MultipleTransferInTrashController::access(
-                $this->request->getPreviousUri(),
+            $this->multipleDeletion = $this->accessMultipleReplacing(
+                $this->request->post(),
                 $this->sent
             );
 
-            if ($multipleDeletion == null) {
-                $this->request->session('success', 'Все отправленные сообщения были удалены');
+            if ($this->multipleDeletion == null) {
+                $this->request->session('success', 'Все отправленные сообщения были перемещены');
                 return $this->request->redirect($this->uriName);
             }
 
-            $this->request->session('error', 'Проблемы с удалением записей');
+            $this->request->session('error', 'Проблемы с перемещением записей');
             return $this->request->redirect($this->uriName);
 
         }

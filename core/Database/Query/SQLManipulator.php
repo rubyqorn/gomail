@@ -81,21 +81,6 @@ class SQLManipulator extends QueryBuilder
     }
 
     /**
-     * Delete multiply records from table
-     * 
-     * @param $data array
-     * 
-     * @return null
-     */ 
-    public function deleteMultipleRecords($data)
-    {
-        foreach($data as $item) {
-            $this->unsetQuery();
-            $this->delete('message_id = ?', [$item]);
-        }
-    }
-
-    /**
      * Set condition for SQL statements
      * 
      * @param $condition string

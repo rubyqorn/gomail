@@ -68,13 +68,13 @@ class SpamedMessagesController extends Controller
     public function replaceIntoTrash()
     {
         if ($this->request->checkHttpMethod('POST')) {
-            $multipleDeletion = MultipleTransferInTrashController::access(
-                $this->request->getPreviousUri(),
+            $this->multipleDeletion = $this->accessMultipleReplacing(
+                $this->request->post(),
                 $this->spam
             );
 
-            if ($multipleDeletion == null) {
-                $this->request->session('success', 'Все заспамленные сообщения удалены');
+            if ($this->multipleDeletion == null) {
+                $this->request->session('success', 'Все заспамленные сообщения перемещены');
                 return $this->request->redirect($this->uriName);
             }
         }

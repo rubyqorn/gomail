@@ -88,4 +88,60 @@ abstract class Model extends SQLManipulator
                     ->limit("{$items},{$perPage}")->getAll();   
     }
 
+    /**
+     * Get checked records by ID 
+     * 
+     * @param $records array
+     * @param \Gomail\Database\Model $model 
+     * 
+     * @return array
+     */ 
+    protected function getCheckedRecords($records)
+    {
+        foreach($records as $record) {
+            $this->records[] = $this->selectAll()->where(" message_id = '{$record}' ")->getAll();
+            $this->unsetQuery();
+        }
+
+        return $this->records;
+    }
+
+    /**
+     * Delete multiply records from table
+     * 
+     * @param $data array
+     * 
+     * @return null
+     */ 
+    public function deleteMultipleRecords($data)
+    {
+        foreach($data as $item) {
+            $this->unsetQuery();
+            $this->delete('message_id = ?', [$item]);
+        }
+    }
+
+    /**
+     * Replace all checked records into spam table
+     * 
+     * @param $data array
+     * 
+     * @return null 
+     */ 
+    public function multipleReplacingInSpam($data)
+    {
+        $records = $this->getCheckedRecords($data);
+
+        foreach($records as $item) {
+           $this->unsetQuery();
+           
+           foreach($item as $i) {
+               $this->table = 'spamed';
+               $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
+                    $i['message_id'], $i['who_sent'], $i['whom_sent'], $i['title'], $i['content']
+               ]);
+           }
+        }
+    }
+
 }
