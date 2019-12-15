@@ -35,9 +35,8 @@ class MultipleTransferInTrashController extends MultipleReplacing implements Mul
             $postData = $multiple->request->post();
             unset($postData['select-all']);
             unset($postData['trash']);
-            return $model->deleteMultipleRecords($postData);
+            return $multiple->multiple->deletion($postData, $model);
         }
-
 
     }
 

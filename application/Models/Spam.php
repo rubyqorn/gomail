@@ -14,7 +14,7 @@ class Spam extends Model
      * 
      * @var string
      */
-    protected $table = 'spamed';
+    public $table = 'spamed';
 
     /**
      * @var \Application\Models\User
@@ -37,6 +37,27 @@ class Spam extends Model
     {
         return $this->selectAll()->getAll();
     }
+
+    // public function checkContainsOfRecords($records)
+    // {
+    //     $status = false;
+
+    //     if (array_key_exists('spam', $records) || array_key_exists('select-all', $records)) {
+    //         unset($records['spam'], $records['select-all']);
+            
+    //         foreach($records as $record) {
+    //             $items = $this->selectAll()->where(" message_id = {$record} ")->getAll();
+    //             $this->unsetQuery();
+
+    //             $status = !empty($items) ? true : false;
+
+    //             return $status;
+                
+    //         }
+    //     }
+
+        
+    // }
 
     /**
      * Search messages which was checked like

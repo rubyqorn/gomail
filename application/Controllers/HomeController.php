@@ -91,13 +91,16 @@ class HomeController extends Controller
         }
 
         $this->multipleDeletion = $this->accessMultipleReplacing($this->request->post(), $this->message);
-        
-        if ($this->multipleDeletion == null) {
-            $this->request->session('success', 'Все записи успешно перемещены');
+
+        if ($this->multipleDeletion == false) {
+            $this->request->session('error', 'Проблема с перемещением');
             return $this->request->redirect($this->uriName);
         }
-
-        $this->request->session('error', 'Проблема с перемещением');
+        
+        $this->request->session('success', 'Все записи успешно перемещены');
         return $this->request->redirect($this->uriName);
+        
+
+        
     }
 }

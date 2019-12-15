@@ -109,11 +109,6 @@
                         <!-- Trash and spam buttons -->
                         <div class="col-lg-9 d-flex" id="additional-tools">
                             <div class="form-group">
-                                <button type="submit" class="spam-button mr-2" name="spam" id="spam">
-                                    <i class="fas fa-exclamation-circle text-secondary"></i>
-                                </button>
-                            </div>
-                            <div class="form-group">
                                 <button type="submit" class="trash-button" name="trash" id="trash">
                                     <i class="fas fa-trash text-secondary"></i>
                                 </button>

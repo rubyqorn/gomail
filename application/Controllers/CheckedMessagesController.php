@@ -76,12 +76,12 @@ class CheckedMessagesController extends Controller
             $this->check
         );
 
-        if ($this->multipleDeletion == null) {
-            $this->request->session('success', 'Все отмеченные сообщения перемещены');
+        if ($this->multipleDeletion == false) {
+            $this->request->session('error', 'Проблема с перемещением');
             return $this->request->redirect($this->uriName);
         }
-
-        $this->request->session('error', 'Проблема с перемещением отмеченных сообщений');
+        
+        $this->request->session('success', 'Все записи успешно перемещены');
         return $this->request->redirect($this->uriName);
 
 

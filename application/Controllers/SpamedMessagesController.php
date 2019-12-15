@@ -73,10 +73,13 @@ class SpamedMessagesController extends Controller
                 $this->spam
             );
 
-            if ($this->multipleDeletion == null) {
-                $this->request->session('success', 'Все заспамленные сообщения перемещены');
+            if ($this->multipleDeletion == false) {
+                $this->request->session('error', 'Проблема с перемещением');
                 return $this->request->redirect($this->uriName);
             }
+            
+            $this->request->session('success', 'Все записи успешно перемещены');
+            return $this->request->redirect($this->uriName);
         }
 
         return $this->request->redirect($this->uriName);

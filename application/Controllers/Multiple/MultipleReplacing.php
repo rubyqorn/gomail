@@ -3,10 +3,16 @@
 namespace Application\Controllers\Multiple;
 
 use Application\Controllers\Controller;
+use Application\Models\Multiple;
 use Gomail\Request\Exceptions\InvalidArgumentsException;
 
 class MultipleReplacing extends Controller 
 {
+    /**
+     * @var \Application\Modes\Multiple 
+     */ 
+    protected $multiple;
+
     /**
      * Contains an available table names
      * where we can replace records
@@ -24,6 +30,13 @@ class MultipleReplacing extends Controller
      * @var string
      */ 
     protected $tableName;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->multiple = new Multiple();
+    }
 
     /**
      * Table name validation. And returning the 

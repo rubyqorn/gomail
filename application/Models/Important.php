@@ -14,7 +14,7 @@ class Important extends Model
      * 
      * @var string
      */ 
-    protected $table = 'important';
+    public $table = 'important';
 
     /**
      * @var \Application\Models\User
