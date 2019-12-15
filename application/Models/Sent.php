@@ -14,7 +14,7 @@ class Sent extends Model
      * 
      * @var string
      */
-    protected $table = 'sent';
+    public $table = 'sent';
 
     /**
      * @var \Application\Models\User

@@ -77,12 +77,12 @@ class ImportantMessagesController extends Controller
             $this->important
         );
 
-        if ($this->multipleDeletion == null) {
-            $this->request->session('success', 'Все важные сообщения перемещены');
+        if ($this->multipleDeletion == false) {
+            $this->request->session('error', 'Проблема с перемещением');
             return $this->request->redirect($this->uriName);
         }
-
-        $this->request->session('error', 'Возникла проблема с перемещением важных сообещний');
+        
+        $this->request->session('success', 'Все записи успешно перемещены');
         return $this->request->redirect($this->uriName);
     }
 }

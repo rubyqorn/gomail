@@ -14,7 +14,7 @@ class Check extends Model
      * 
      * @var string
      */
-    protected $table = 'checked';
+    public $table = 'checked';
 
     /**
      * @var \Application\Models\User

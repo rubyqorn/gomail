@@ -107,41 +107,26 @@ abstract class Model extends SQLManipulator
     }
 
     /**
-     * Delete multiply records from table
-     * 
-     * @param $data array
-     * 
-     * @return null
-     */ 
-    public function deleteMultipleRecords($data)
-    {
-        foreach($data as $item) {
-            $this->unsetQuery();
-            $this->delete('message_id = ?', [$item]);
-        }
-    }
-
-    /**
      * Replace all checked records into spam table
      * 
      * @param $data array
      * 
      * @return null 
      */ 
-    public function multipleReplacingInSpam($data)
-    {
-        $records = $this->getCheckedRecords($data);
+    // public function multipleReplacingInSpam($data)
+    // {
+    //     $records = $this->getCheckedRecords($data);
 
-        foreach($records as $item) {
-           $this->unsetQuery();
+    //     foreach($records as $item) {
+    //        $this->unsetQuery();
            
-           foreach($item as $i) {
-               $this->table = 'spamed';
-               $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
-                    $i['message_id'], $i['who_sent'], $i['whom_sent'], $i['title'], $i['content']
-               ]);
-           }
-        }
-    }
+    //        foreach($item as $i) {
+    //            $this->table = 'spamed';
+    //            $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
+    //                 $i['message_id'], $i['who_sent'], $i['whom_sent'], $i['title'], $i['content']
+    //            ]);
+    //        }
+    //     }
+    // }
 
 }

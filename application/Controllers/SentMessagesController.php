@@ -73,12 +73,12 @@ class SentMessagesController extends Controller
                 $this->sent
             );
 
-            if ($this->multipleDeletion == null) {
-                $this->request->session('success', 'Все отправленные сообщения были перемещены');
+            if ($this->multipleDeletion == false) {
+                $this->request->session('error', 'Проблема с перемещением');
                 return $this->request->redirect($this->uriName);
             }
-
-            $this->request->session('error', 'Проблемы с перемещением записей');
+            
+            $this->request->session('success', 'Все записи успешно перемещены');
             return $this->request->redirect($this->uriName);
 
         }

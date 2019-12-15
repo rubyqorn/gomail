@@ -7,7 +7,7 @@ use Gomail\Request\Request;
 
 class Message extends Model
 {
-    protected $table = 'messages';
+    public $table = 'messages';
 
     /**
      * @var \Application\Models\User

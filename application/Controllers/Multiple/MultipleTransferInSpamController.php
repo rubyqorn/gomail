@@ -31,7 +31,9 @@ class MultipleTransferInSpamController extends MultipleReplacing implements Mult
             $postData = $multiple->request->post();
             unset($postData['select-all']);
             unset($postData['spam']);
-            return $model->multipleReplacingInSpam($postData, $model);
+            return $multiple->multiple->replaceToSpam($postData, $model);
+                
+            
         }
     }
 }
