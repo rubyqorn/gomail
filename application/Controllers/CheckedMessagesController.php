@@ -65,7 +65,7 @@ class CheckedMessagesController extends Controller
      * 
      * @return \Gomail\Session\Session
      */ 
-    public function replaceIntoTrash()
+    public function replaceInto()
     {
         if (!$this->request->checkHttpMethod('POST')) {
             return $this->request->redirect($this->uriName);
@@ -85,5 +85,27 @@ class CheckedMessagesController extends Controller
         return $this->request->redirect($this->uriName);
 
 
+    }
+
+    /**
+     * Replace single records into spam, trash, important
+     * tables
+     * 
+     * @return \Gomail\Request\Session
+     */ 
+    public function replaceSingleRecord()
+    {
+        $replacing = \Application\Controllers\Single\SingleTransferInTrashController::access(
+            $this->request->getPreviousUri(), 
+            $this->check
+        );
+
+        if ($replacing) {
+            $this->request->session('success', 'Отмеченная запись успешно перемещена');
+            return $this->request->redirect($this->uriName);
+        }
+
+        $this->request->session('error', 'Проблемы с перемещением записи');
+        return $this->request->redirect($this->uriName);
     }
 }

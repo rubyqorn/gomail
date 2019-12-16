@@ -84,7 +84,7 @@ class HomeController extends Controller
      * 
      * @return \Gomail\Request\Session
      */ 
-    public function replaceToTrash()
+    public function replaceTo()
     {
         if (!$this->request->checkHttpMethod('POST')) {
             return $this->request->redirect($this->uriName);
@@ -102,5 +102,10 @@ class HomeController extends Controller
         
 
         
+    }
+
+    public function replaceSingleRecord()
+    {
+        //
     }
 }

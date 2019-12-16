@@ -66,7 +66,7 @@ class ImportantMessagesController extends Controller
      * 
      * @return \Gomail\Session\Session
      */ 
-    public function replaceIntoTrash()
+    public function replaceInto()
     {
         if (!$this->request->checkHttpMethod('POST')) {
             return $this->request->redirect($this->uriName);
@@ -84,5 +84,10 @@ class ImportantMessagesController extends Controller
         
         $this->request->session('success', 'Все записи успешно перемещены');
         return $this->request->redirect($this->uriName);
+    }
+
+    public function replaceSingleRecord()
+    {
+        //
     }
 }

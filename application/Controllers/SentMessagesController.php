@@ -65,7 +65,7 @@ class SentMessagesController extends Controller
      * 
      * @return \Gomail\Session\Session
      */ 
-    public function replaceIntoTrash()
+    public function replaceInto()
     {
         if ($this->request->checkHttpMethod('POST')) {
             $this->multipleDeletion = $this->accessMultipleReplacing(
@@ -84,5 +84,10 @@ class SentMessagesController extends Controller
         }
 
         return $this->request->redirect($this->uriName);
+    }
+
+    public function replaceSingleRecord()
+    {
+        //
     }
 }

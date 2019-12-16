@@ -65,7 +65,7 @@ class SpamedMessagesController extends Controller
      * 
      * @return \Gomail\Session\Session
      */ 
-    public function replaceIntoTrash()
+    public function replaceInto()
     {
         if ($this->request->checkHttpMethod('POST')) {
             $this->multipleDeletion = $this->accessMultipleReplacing(
@@ -83,5 +83,10 @@ class SpamedMessagesController extends Controller
         }
 
         return $this->request->redirect($this->uriName);
+    }
+
+    public function replaceSingleRecord()
+    {
+        //
     }
 }
