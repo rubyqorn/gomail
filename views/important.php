@@ -144,23 +144,32 @@
                                 </p>
                             </div>
                             <div class="col-lg-2 d-flex">
-                                <form action="/" method="post">
+                                <form action="/important/replace-one" method="post">
                                     <div class="form-group">
-                                        <button type="submit" class="trash-button text-secondary" id="replace-in">
+                                        <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="trash" class="trash-button text-secondary" id="replace-in">
                                             <i class="fas fa-trash"></i>
                                         </button>
                                     </div>
                                 </form>
                                 <form action="/" method="post">
+                                     <div class="form-group">
+                                        <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
+                                    </div>
                                     <div class="form-group">
-                                        <button type="submit" class="star-button text-secondary" id="replace-in">
+                                        <button type="submit" name="star" class="star-button text-secondary" id="replace-in">
                                             <i class="far fa-star"></i>
                                         </button>
                                     </div>
                                 </form>
                                 <form action="/" method="post">
                                     <div class="form-group">
-                                        <button type="submit" class="spam-button text-secondary mr-1" id="replace-in">
+                                        <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="spam" class="spam-button text-secondary mr-1" id="replace-in">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </button>
                                     </div>
