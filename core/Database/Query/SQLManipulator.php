@@ -77,7 +77,6 @@ class SQLManipulator extends QueryBuilder
     protected function delete($condition, $bindings = [])
     {
         $this->query[] = "DELETE FROM {$this->table} WHERE {$condition}";
-        var_dump($this->sqlToString());
         return $this->preparedStatement($this->sqlToString(), $bindings);
     }
 

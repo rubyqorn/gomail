@@ -15,7 +15,7 @@ class SingleTransferInTrashController extends SingleReplacing implements Single
      * 
      * @return \Gomail\Request\Session 
      */ 
-    public static function access(string $uri, Model $model)
+    public static function access(string $uri, array $data, Model $model)
     {
         $single = new self();
 

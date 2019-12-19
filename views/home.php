@@ -154,7 +154,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <form action="/" method="post">
+                                <form action="/messages/replace-one" method="post">
                                     <div class="form-group">
                                         <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
                                     </div>
@@ -164,7 +164,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <form action="/" method="post">
+                                <form action="/messages/replace-one" method="post">
                                     <div class="form-group">
                                         <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
                                     </div>

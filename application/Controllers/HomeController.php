@@ -104,8 +104,26 @@ class HomeController extends Controller
         
     }
 
+    /**
+     * Replace a single message into trash, spam or
+     * importants tables
+     * 
+     * @return \Gomail\Request\Session
+     */
     public function replaceSingleRecord()
     {
-        //
+        $replacing = $this->accessSingleReplacing(
+            $this->request->getPreviousUri(),
+            $this->request->post(),
+            $this->message
+        );
+
+        if ($replacing) {
+            $this->request->session('success', 'Сообщения успешно перемещено');
+            return $this->request->redirect($this->uriName);
+        }
+
+        $this->request->session('error', 'Возможно сообщения существуют в других директориях');
+        return $this->request->redirect($this->uriName);
     }
 }
