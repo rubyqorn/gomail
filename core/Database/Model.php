@@ -106,27 +106,4 @@ abstract class Model extends SQLManipulator
         return $this->records;
     }
 
-    /**
-     * Replace all checked records into spam table
-     * 
-     * @param $data array
-     * 
-     * @return null 
-     */ 
-    // public function multipleReplacingInSpam($data)
-    // {
-    //     $records = $this->getCheckedRecords($data);
-
-    //     foreach($records as $item) {
-    //        $this->unsetQuery();
-           
-    //        foreach($item as $i) {
-    //            $this->table = 'spamed';
-    //            $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
-    //                 $i['message_id'], $i['who_sent'], $i['whom_sent'], $i['title'], $i['content']
-    //            ]);
-    //        }
-    //     }
-    // }
-
 }

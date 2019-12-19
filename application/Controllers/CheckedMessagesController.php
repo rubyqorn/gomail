@@ -95,17 +95,20 @@ class CheckedMessagesController extends Controller
      */ 
     public function replaceSingleRecord()
     {
-        $replacing = \Application\Controllers\Single\SingleTransferInTrashController::access(
-            $this->request->getPreviousUri(), 
+        $replacing =$this->accessSingleReplacing(
+            $this->request->getPreviousUri(),
+            $this->request->post(),
             $this->check
         );
 
-        if ($replacing) {
-            $this->request->session('success', 'Отмеченная запись успешно перемещена');
+        if ($replacing == FALSE) {
+            $this->request->session('error', 'Проблемы с перемещением записи');
             return $this->request->redirect($this->uriName);
         }
 
-        $this->request->session('error', 'Проблемы с перемещением записи');
+        $this->request->session('success', 'Отмеченная запись успешно перемещена');
         return $this->request->redirect($this->uriName);
+
+        
     }
 }

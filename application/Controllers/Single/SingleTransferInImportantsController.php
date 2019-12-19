@@ -6,7 +6,7 @@ use Gomail\Database\Model;
 
 class SingleTransferInImportantsController extends SingleReplacing implements Single 
 {
-    public function access(string $uri, Model $model)
+    public function access(string $uri, array $data, Model $model)
     {
         //
     }

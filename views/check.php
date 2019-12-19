@@ -23,7 +23,7 @@
                         </a>
                     </li>
                 <li class="sidebar-item montserrat-font">
-                        <a href="/check/page/1" class="sidebar-link">
+                        <a href="/checked/page/1" class="sidebar-link">
                             <i class="fas fa-check mt-1 mr-2 float-left"></i> Отмеченные
                         </a>
                     </li>
@@ -154,7 +154,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <form action="/" method="post">
+                                <form action="/checked/replace-one" method="post">
                                     <div class="form-group">
                                         <input type="hidden" name="id" value="<?php echo $message['message_id'] ?>">
                                     </div>
@@ -164,7 +164,7 @@
                                         </button>
                                     </div>
                                 </form>
-                                <form action="/" method="post">
+                                <form action="/checked/replace-one" method="post">
                                     <div class="form-group">
                                         <input type="hidden" name="id" value="<?php echo $message['message_id'] ?>">
                                     </div>

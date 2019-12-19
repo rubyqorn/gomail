@@ -8,6 +8,9 @@ use Gomail\Database\Model;
 use Application\Models\User;
 use Application\Controllers\Multiple\MultipleTransferInSpamController;
 use Application\Controllers\Multiple\MultipleTransferInTrashController;
+use Application\Controllers\Single\SingleTransferInImportantsController;
+use Application\Controllers\Single\SingleTransferInSpamController;
+use Application\Controllers\Single\SingleTransferInTrashController;
 
 class Controller 
 {
@@ -82,5 +85,35 @@ class Controller
         }
 
         return $this->request->redirect($this->request->getPreviousUri());
+    }
+
+    /**
+     * Get an object of clasess which replace single
+     * record into spam, important, trash tables
+     * 
+     * @param $uri string
+     * @param $data array
+     * @param \Gomail\Database\Model $model 
+     * 
+     * @return \Application\Controllers\Single\SingleTransferInTrashController
+     *          \Application\Controllers\Single\SingleTransferInSpamController
+     *          \Application\Controllers\Single\SingleTransferInImportantsController
+     */ 
+    public function accessSingleReplacing($uri, $data, Model $model) 
+    {
+        switch($data) {
+            case array_key_exists('trash', $data):
+                return SingleTransferInTrashController::access($uri, $data, $model);
+            break;
+            case array_key_exists('star', $data):
+                return SingleTransferInImportantsController::access($uri, $data, $model);
+            break;
+            case array_key_exists('spam', $data): 
+                return SingleTransferInSpamController::access($uri, $data, $model);
+            break;
+            default:
+                return $this->request->redirect('/');
+            break;
+        }
     }
 }

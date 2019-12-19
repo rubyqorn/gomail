@@ -85,8 +85,26 @@ class SpamedMessagesController extends Controller
         return $this->request->redirect($this->uriName);
     }
 
+    /**
+     * Replace a single message into trash, spam or
+     * importants tables
+     * 
+     * @return \Gomail\Request\Session
+     */ 
     public function replaceSingleRecord()
     {
-        //
+        $replacing = $this->accessSingleReplacing(
+            $this->request->getPreviousUri(),
+            $this->request->post(),
+            $this->spam
+        );
+
+        if ($replacing) {
+            $this->request->session('success', 'Сообщение успешно перемещено');
+            return $this->request->redirect($this->uriName);
+        }
+
+        $this->request->session('error', 'Проблема с перемещением сообщения');
+        return $this->request->redirect($this->uriName);
     }
 }
