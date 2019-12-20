@@ -11,6 +11,7 @@ use Application\Controllers\Multiple\MultipleTransferInTrashController;
 use Application\Controllers\Single\SingleTransferInImportantsController;
 use Application\Controllers\Single\SingleTransferInSpamController;
 use Application\Controllers\Single\SingleTransferInTrashController;
+use Application\Controllers\Single\SingleTransferInCheckedController;
 
 class Controller 
 {
@@ -98,6 +99,7 @@ class Controller
      * @return \Application\Controllers\Single\SingleTransferInTrashController
      *          \Application\Controllers\Single\SingleTransferInSpamController
      *          \Application\Controllers\Single\SingleTransferInImportantsController
+     *           \Application\Controllers\Single\SingleTransferInCheckedController
      */ 
     public function accessSingleReplacing($uri, $data, Model $model) 
     {
@@ -111,6 +113,8 @@ class Controller
             case array_key_exists('spam', $data): 
                 return SingleTransferInSpamController::access($uri, $data, $model);
             break;
+            case array_key_exists('checked', $data):
+                return SingleTransferInCheckedController::access($uri, $data, $model);
             default:
                 return $this->request->redirect('/');
             break;

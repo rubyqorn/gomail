@@ -38,7 +38,7 @@
                         </a>
                     </li>
                     <li class="sidebar-item montserrat-font">
-                        <a href="/spam/page/1" class="sidebar-link">
+                        <a href="/spamed/page/1" class="sidebar-link">
                             <i class="fas fa-exclamation-circle mt-1 mr-2 float-left"></i> Спам
                         </a>
                     </li>
@@ -161,6 +161,16 @@
                                     <div class="form-group">
                                         <button type="submit" name="star" class="star-button text-secondary" id="replace-in">
                                             <i class="far fa-star"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <form action="/important/replace-one" method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" name="checked" class="checked-button text-secondary" id="replace-in">
+                                            <i class="fa fa-check"></i>
                                         </button>
                                     </div>
                                 </form>
