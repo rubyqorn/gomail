@@ -169,6 +169,16 @@
                                         <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
                                     </div>
                                     <div class="form-group">
+                                        <button type="submit" name="checked" class="checked-button text-secondary" id="replace-in">
+                                            <i class="fa fa-check"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                                <form action="/messages/replace-one" method="post">
+                                    <div class="form-group">
+                                        <input type="hidden" name="id" value="<?php echo $message['message_id']; ?>">
+                                    </div>
+                                    <div class="form-group">
                                         <button type="submit" name="spam" class="spam-button text-secondary mr-1" id="replace-in">
                                             <i class="fas fa-exclamation-circle"></i>
                                         </button>

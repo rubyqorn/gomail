@@ -16,10 +16,11 @@ body {
     border: none;
 }
 
-.spam-button, .trash-button, .star-button {
+.spam-button, .trash-button, .star-button, .checked-button {
     border: none;
     background-color: transparent;
     cursor: pointer;
+    padding: 0 4px;
 }
 
 .navbar-white {

@@ -81,7 +81,61 @@ class Single extends Model
         
     }  
 
-        /**
+    /**
+     * Checking for the passed record was not in
+     * the table and insert if this true
+     * 
+     * @param $uri string
+     * @param $data array
+     * @param \Gomail\Database\Model $model 
+     * 
+     * @return bool
+     */ 
+    public function transferIntoImportants($uri, $data, Model $model)
+    {
+        $checking = $this->checkAvailibilityOfRecords('important', $data, $model);
+        $record = $this->getRecordById($data, $model);
+
+        if ($checking == false) {
+            $this->table = 'important';
+            $this->unsetQuery();
+
+            foreach($record as $item) {
+                return $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
+                    $item['message_id'], $item['who_sent'], $item['whom_sent'], $item['title'],
+                    $item['content']
+                ]);
+            }
+        }
+    }
+
+    /**
+     * Replace record into checked table
+     * 
+     * @param $data array
+     * @param \Gomail\Database\Model $model 
+     * 
+     * @return bool
+     */ 
+    public function transferIntoChecked($data, Model $model) 
+    {
+        $checking = $this->checkAvailibilityOfRecords('checked', $data, $model);
+        $record = $this->getRecordById($data, $model);
+
+        if ($checking == false) {
+            $this->table = 'checked';
+            $this->unsetQuery();
+
+            foreach($record as $item) {
+                return $this->insert('message_id, who_sent, whom_sent, title, content', '?,?,?,?,?', [
+                    $item['message_id'], $item['who_sent'], $item['whom_sent'], $item['title'], 
+                    $item['content']
+                ]); 
+            }
+        }
+    }
+
+    /**
      * Check for in the passed table was records
      * 
      * @param $table string
