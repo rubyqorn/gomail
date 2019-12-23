@@ -98,4 +98,36 @@ class Message extends Model
         $id = $this->user->getAuthUser()['id'];
         return $this->search->search($request, $id);
     }
+
+    /**
+     * Pass id into SQL statement and get a record with 
+     * the same id
+     * 
+     * @param int $id 
+     * 
+     * @return array
+     */ 
+    public function getMessageById($id)
+    {
+        $this->unsetQuery();
+        return $this->selectRows(
+            'messages.title, messages.content, messages.created_at, users.name, users.surname,
+            users.image'
+        )->join(
+            'users', 'messages.whom_sent = users.id'
+        )->and(
+            'messages.message_id', "= {$id}"
+        )->getOne();
+    }
+
+    /**
+     * Get records five records for sidebar
+     * 
+     * @return array
+     */ 
+    public function getFirstFiveMessages()
+    {
+        $this->unsetQuery();
+        return $this->selectRows('messages.title, messages.message_id, users.name, users.surname')->join('users', 'messages.whom_sent = users.id')->and('whom_sent', "= {$this->user->getAuthUser()['id']}")->limit(5)->getAll();
+    }
 }

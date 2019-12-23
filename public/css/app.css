@@ -136,3 +136,17 @@ body {
     font-size: 10px;
     border: none;
 }
+
+.full-height-border {
+    border-right: 1px #ddd solid;
+    border-left: 1px #ddd solid;
+    height: inherit;
+}
+
+#dialog #user-info img {
+    width: 5%;
+}
+
+#message a[data-toggle="modal"] {
+    cursor: pointer;
+}

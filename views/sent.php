@@ -132,9 +132,9 @@
                         <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
                             <div class="col-lg-3 d-flex">
                                 <input type="checkbox" name="check" class="checkbox-item mt-1" value="<?php echo $message['message_id']; ?>">
-                                <p class="text-black-50 montserrat-font ml-3 mt-3">
-                                    <?php echo $message['title']; ?>
-                                </p>
+                                <a role="button" data-toggle="modal" data-target="#show-message-<?php echo $message['message_id'] ?>" class="text-primary montserrat-font mt-3 ml-3">
+                                    <?php echo $message['title'] ?>
+                                </a>
                             </div>
                             <div class="col-lg-7">
                                 <p class="text-black-50 montserrat-font">
@@ -190,6 +190,39 @@
                                     </small>
                                 </p>
                                 
+                            </div>
+                        </div>
+
+                        <!-- Modal window with single message -->
+                        <div class="modal fade" id="show-message-<?php echo $message['message_id']; ?>" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h4 class="modal-title montserrat-font text-muted">
+                                            <?php echo $message['title']; ?>
+                                        </h4>
+                                        <button class="close" data-dismiss="modal">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-muted text-align-left">
+                                            <?php echo $message['content']; ?>
+                                        </p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <form action="/sent/replace-one" method="post">
+                                            <div class="form-group">
+                                                <input type="hidden" name="id" value="<?php echo $message['message_id'] ?>">
+                                            </div>
+                                            <div class="form-group">
+                                                <button type="submit" name="trash" class="btn trash-button">
+                                                    <i class="fas fa-trash text-secondary"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 

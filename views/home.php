@@ -132,9 +132,9 @@
                         <div class="col-lg-12 p-0 d-flex bg-light-grey border-bottom border-top border-left pt-2 pb-1" id="message">
                             <div class="col-lg-3 d-flex">
                                 <input type="checkbox" name="checkbox<?php echo $message['message_id']; ?>" class="checkbox" value="<?php echo $message['message_id'] ?>">
-                                <p class="text-black-50 montserrat-font ml-3 mt-3">
+                                <a href="/messages/message/<?php echo $message['message_id'] ?>" class="text-black-50 montserrat-font ml-3 mt-3">
                                     <?php echo $message['title']; ?>
-                                </p>
+                                </a>
                             </div>     
                             <div class="col-lg-7">
                                 <p class="text-black-50 montserrat-font">
