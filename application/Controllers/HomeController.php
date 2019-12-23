@@ -126,4 +126,20 @@ class HomeController extends Controller
         $this->request->session('error', 'Возможно сообщения существуют в других директориях');
         return $this->request->redirect($this->uriName);
     }
+
+    /**
+     * Get single record and display in the template
+     * 
+     * @param int $id
+     * 
+     * @return \Gomail\View\View
+     */ 
+    public function displaySingleRecord($id)
+    {
+        $ownMessages = $this->message->getFirstFiveMessages();
+        $singleMessage = $this->message->getMessageById($id);
+        $title = 'Сообщение от: ' . $singleMessage['name'] . ' ' . $singleMessage['surname'];
+
+        return $this->view->render('message', compact('ownMessages', 'singleMessage', 'title'));
+    }
 }

@@ -164,6 +164,49 @@ class SQLManipulator extends QueryBuilder
     }
 
     /**
+     * This is equivalent of INNER JOIN in SQL
+     * statement
+     * 
+     * @param string $wantedTable 
+     * @param string $condition
+     * 
+     * @return \Gomail\Database\Query\SQLManipulator
+     */ 
+    protected function join($wantedTable, $condition)
+    {
+        $this->query[] = "INNER JOIN {$wantedTable} ON $condition";
+        return $this;
+    }
+
+    /**
+     * This is equivalent of LEFT JOIN in SQL statements
+     * 
+     * @param string $wantedTable
+     * @param string $condition
+     * 
+     * @return \Gomail\Database\Query\SQLManipulator
+     */ 
+    protected function leftJoin($wantedTable, $condition)
+    {
+        $this->query[] = "LEFT JOIN {$wantedTable} ON {$condition}";
+        return $this;
+    }
+
+     /**
+     * This is equivalent of RIGHT JOIN in SQL statements
+     * 
+     * @param string $wantedTable
+     * @param string $condition
+     * 
+     * @return \Gomail\Database\Query\SQLManipulator
+     */ 
+    protected function rightJoin($wantedTable, $condition)
+    {
+        $this->query[] = "RIGHT JOIN {$wantedTable} ON {$condition}";
+        return $this;
+    }
+
+    /**
      * Delete SQL query. Can be used when one first 
      * SQL conflict with second SQL
      * 
