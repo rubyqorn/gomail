@@ -60,23 +60,6 @@ class Message extends Model
     }
 
     /**
-     * Insert a message from message form
-     * 
-     * @param $messageContent array
-     * 
-     * @return bool
-     */ 
-    public function insertMessage($messageContent)
-    {
-        $this->whoSendMessage = $this->user->getAuthUser();
-        $this->userId = $this->user->getUserId($messageContent['email']);
-
-        return $this->insert('who_sent, whom_sent, title, content', '?,?,?,?', [
-            $this->whoSendMessage['id'], $this->userId['id'], $messageContent['title'], $messageContent['message']
-        ]);
-    }
-
-    /**
      * Get all records
      * 
      * @return array
@@ -129,5 +112,23 @@ class Message extends Model
     {
         $this->unsetQuery();
         return $this->selectRows('messages.title, messages.message_id, users.name, users.surname')->join('users', 'messages.whom_sent = users.id')->and('whom_sent', "= {$this->user->getAuthUser()['id']}")->limit(5)->getAll();
+    }
+
+     /*
+     * Insert message into table
+     *
+     * @param array $messageContent
+     * @param int $recordId
+     *
+     * @return bool
+    */
+    public function insertMessage($messageContent, $recordId)
+    {
+        $this->whoSendMessage = $this->user->getAuthUser();
+        $this->userId = $this->user->getUserId($messageContent['email']);
+        
+        return $this->insert('message_id, whom_sent, who_sent, title, content', '?,?,?,?,?', [
+           $recordId, $this->whoSendMessage['id'], $this->userId['id'], $messageContent['title'], $messageContent['message']  
+        ]);
     }
 }

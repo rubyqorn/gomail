@@ -50,4 +50,22 @@ class Sent extends Model
         $id = $this->user->getAuthUser()['id'];
         return $this->search->search($request, $id);
     }
+
+    /**
+     * Insert message into table
+     * 
+     * @param array $messageContent
+     * @param int $recordId
+     * 
+     * @return array
+     */ 
+    public function insertMessage($messageContent, $recordId)
+    {
+        $this->whoSendMessage = $this->user->getAuthUser();
+        $this->userId = $this->user->getUserId($messageContent['email']);
+        
+        return $this->insert('message_id, whom_sent, who_sent, title, content', '?,?,?,?,?', [
+            $recordId, $this->whoSendMessage['id'], $this->userId['id'], $messageContent['title'], $messageContent['message']
+        ]);
+    }
 }
