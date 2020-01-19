@@ -75,7 +75,10 @@
                 <?php echo $singleMessage['content']; ?>
             </p>
 
-            <form action="" method="post">
+            <form action="<?php echo '/messages/message/' . $message['id'] . '/send' ?>" method="post">
+                <div class="form-group">
+                    <input type="text" name="title" class="form-control" placeholder="Title">
+                </div>
                 <div class="form-group">
                     <textarea name="message" class="form-control" cols="20" rows="6" placeholder="Написать ответ"></textarea>
                 </div>

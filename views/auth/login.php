@@ -52,9 +52,9 @@
                                 </button>
                             </div>
 
-                            <a href="/" class="text-primary float-right">
+                            <a href="/registration" class="text-primary float-right">
                                 <small>
-                                    Забыли пароль?
+                                    Регистрация
                                 </small>
                             </a>
 

@@ -52,6 +52,23 @@ class Sent extends Model
     }
 
     /**
+     * Get records for pagination
+     * 
+     * @param int $numberOfPage
+     * @param int $perPage 
+     * 
+     * @return array
+     */ 
+    public function getRecordsForPagination($numberOfPage, $perPage)
+    {
+        $items = ($numberOfPage - 1) * $perPage;
+        $userId = $this->getAuthUser()['id'];
+
+        return $this->selectAll()->where(" who_sent = {$userId} ")
+                    ->limit(" {$items},{$perPage} ")->getAll();
+    }
+
+    /**
      * Insert message into table
      * 
      * @param array $messageContent

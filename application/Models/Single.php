@@ -147,7 +147,7 @@ class Single extends Model
     {
         $this->table = $table;
 
-        $records = $this->selectRows('id')->where("message_id = {$data['id']}")->getOne();
+        $records = $this->selectRows('id')->where("id = {$data['id']}")->getOne();
         $this->unsetQuery();
 
         if ($records == false) {
@@ -171,7 +171,7 @@ class Single extends Model
     {
         $this->table = $model->table;
 
-        return $this->selectAll()->where(" message_id = {$data['id']} ")->getAll();
+        return $this->selectAll()->where(" id = {$data['id']} ")->getAll();
     }
 
 }

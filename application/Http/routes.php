@@ -39,3 +39,4 @@ $route->postMethod('important/replace-one', 'ImportantMessagesController@replace
 $route->postMethod('sent/replace-one', 'SentMessagesController@replaceSingleRecord');
 $route->postMethod('spamed/replace-one', 'SpamedMessagesController@replaceSingleRecord');
 $route->getMethod('messages/message/{id}', 'HomeController@displaySingleRecord');
+$route->postMethod('messages/message/{id}/send', 'SendMessageController@send');
