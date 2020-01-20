@@ -86,7 +86,7 @@ class Request
     */
     public function getPreviousUri()
     {
-        return substr($_SERVER['HTTP_REFERER'], 18);
+        return substr($_SERVER['HTTP_REFERER'], 31);
     }
 
     /**

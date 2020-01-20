@@ -29,7 +29,7 @@ $route->postMethod('important/search', 'ImportantMessagesController@search');
 $route->postMethod('sent/search', 'SentMessagesController@search');
 $route->postMethod('spamed/search', 'SpamedMessagesController@search');
 $route->postMethod('messages/replace', 'HomeController@replaceTo');
-$route->postMethod('checked/replace', 'CheckedMessagesController@replaceInt');
+$route->postMethod('checked/replace', 'CheckedMessagesController@replaceInto');
 $route->postMethod('important/replace', 'ImportantMessagesController@replaceInto');
 $route->postMethod('sent/replace', 'SentMessagesController@replaceIntoTrash@replaceInto');
 $route->postMethod('spamed/replace', 'SpamedMessagesController@replaceInto');
